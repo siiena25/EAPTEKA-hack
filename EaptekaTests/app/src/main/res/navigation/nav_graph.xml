@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/accountFragment">
+
+    <fragment
+        android:id="@+id/accountFragment"
+        android:name="com.eapteka.eaptekatests.AccountFragment"
+        android:label="fragment_account"
+        tools:layout="@layout/fragment_account" >
+        <action
+            android:id="@+id/action_accountFragment_to_completedTestsFragment"
+            app:destination="@id/completedTestsFragment"
+            app:popUpTo="@id/accountFragment" />
+        <action
+            android:id="@+id/action_accountFragment_to_listAvaibleTestFragment"
+            app:destination="@id/listAvaibleTestFragment"
+            app:popUpTo="@id/accountFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/finalTestFragment"
+        android:name="com.eapteka.eaptekatests.FinalTestFragment"
+        android:label="fragment_final_test"
+        tools:layout="@layout/fragment_final_test" >
+        <action
+            android:id="@+id/action_finalTestFragment_to_accountFragment2"
+            app:destination="@id/accountFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/testFragment"
+        android:name="com.eapteka.eaptekatests.TestFragment"
+        android:label="fragment_test"
+        tools:layout="@layout/fragment_test" >
+        <action
+            android:id="@+id/action_testFragment_to_finalTestFragment"
+            app:destination="@id/finalTestFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/completedTestsFragment"
+        android:name="com.eapteka.eaptekatests.CompletedTestsFragment"
+        android:label="fragment_completed_tests"
+        tools:layout="@layout/fragment_completed_tests" >
+        <action
+            android:id="@+id/action_completedTestsFragment_to_testFragment"
+            app:destination="@id/testFragment"
+            app:popUpTo="@id/completedTestsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listAvaibleTestFragment"
+        android:name="com.eapteka.eaptekatests.ListAvaibleTestFragment"
+        android:label="fragment_list_avaible_test"
+        tools:layout="@layout/fragment_list_avaible_test" >
+        <action
+            android:id="@+id/action_listAvaibleTestFragment_to_testFragment"
+            app:destination="@id/testFragment"
+            app:popUpTo="@id/listAvaibleTestFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pillFragment"
+        android:name="com.eapteka.eaptekatests.PillFragment"
+        android:label="fragment_pill"
+        tools:layout="@layout/fragment_pill" >
+        <action
+            android:id="@+id/action_pillFragment_to_testFragment"
+            app:destination="@id/testFragment" />
+    </fragment>
+</navigation>
