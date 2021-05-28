@@ -18,4 +18,8 @@
     <string name="about_company">О компании</string>
     <string name="app_version">Версия 4.7.8</string>
     <string name="exit">ВЫХОД</string>
+    <string name="medicine">Лекарство</string>
+    <string name="current_tests">Текущие тесты:</string>
+    <string name="finished_tests">Пройденные тесты:</string>
+    <string name="progress">1/4</string>
 </resources>

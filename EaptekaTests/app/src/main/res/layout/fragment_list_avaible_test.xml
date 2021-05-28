@@ -1,14 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ListAvaibleTestFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <View
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="110dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/ic_first_wave" />
 
-</FrameLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/ic_second_wave" />
+
+    <LinearLayout
+        android:id="@+id/tests_top_menu"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="18dp">
+
+        <ImageButton
+            android:id="@+id/return_to_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_baseline_arrow_back_24" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            android:id="@+id/bonuses"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_form"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:paddingLeft="10dp"
+            android:paddingTop="2dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="2dp"
+            android:text="@string/score"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tests_lists"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/purple" />
+
+        <TextView
+            android:id="@+id/current_tests"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:gravity="center"
+            android:text="@string/current_tests"
+            android:textColor="@color/purple"
+            android:textSize="24sp"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/started_tests_list"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            android:paddingStart="8dp"
+            android:paddingLeft="8dp"
+            android:paddingEnd="8dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="8dp"
+            app:layout_anchor="@+id/linearLayout"
+            app:layout_anchorGravity="bottom|center"
+            tools:listitem="@layout/started_test" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/purple" />
+
+        <TextView
+            android:id="@+id/finished_tests"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:gravity="center"
+            android:text="@string/finished_tests"
+            android:textColor="@color/purple"
+            android:textSize="24sp"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/finished_tests_list"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="170dp"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            android:paddingStart="8dp"
+            android:paddingLeft="8dp"
+            android:paddingEnd="8dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="8dp"
+            app:layout_anchor="@+id/linearLayout"
+            app:layout_anchorGravity="bottom|center"
+            tools:listitem="@layout/finished_test" />
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
