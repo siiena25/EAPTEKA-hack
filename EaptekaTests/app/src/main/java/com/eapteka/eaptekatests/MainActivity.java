@@ -35,16 +35,18 @@ public class MainActivity extends AppCompatActivity {
                 this.pills = pills;
                 for(int i = 0; i < pills.size(); i++) {
                     Pill pill = pills.get(i);
-                    logger.log(pill.name);
+                    logger.log(pill.getName());
                 }
             }
         };
         Observer<Pill> obs = pill -> {
             if (pill != null) {
                 this.pill = pill;
-                logger.log(pill.substance);
+                logger.log(pill.getSubstance());
             }
         };
+//        pillViewModel.updateAllPills();
+//        pillViewModel.getAllPills().observe(this, observer);
 
         pillViewModel.updatePill("Arbidol");
         pillViewModel.getPill().observe(this, obs);
