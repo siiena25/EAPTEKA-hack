@@ -8,12 +8,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.eapteka.eaptekatests.database.Logger;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link PillFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class PillFragment extends BaseFragment {
+
+    Logger logger = new Logger("PillFragment", true);
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -53,6 +57,7 @@ public class PillFragment extends BaseFragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        logger.log("onCreate");
     }
 
     @Override

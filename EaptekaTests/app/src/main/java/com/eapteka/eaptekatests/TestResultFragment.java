@@ -15,10 +15,15 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
 
+import nl.dionsegijn.konfetti.KonfettiView;
+import nl.dionsegijn.konfetti.emitters.StreamEmitter;
+import nl.dionsegijn.konfetti.models.Shape;
+import nl.dionsegijn.konfetti.models.Size;
+
 public class TestResultFragment extends Fragment {
 
     private static final String RIGHT_ANSWERS_COUNT = "right_answers_count";
-    private static final String IS_RIGHT_ANSWERS = "is_right_answers";
+    private static final String IS_RIGHT_ANSWERS = "is_answer_right";
     private int rightAnswersCount = 0;
     private boolean[] isAnswerRight = new boolean[5];
     private ImageView image;
@@ -35,7 +40,6 @@ public class TestResultFragment extends Fragment {
             rightAnswersCount = getArguments().getInt(RIGHT_ANSWERS_COUNT);
             isAnswerRight = getArguments().getBooleanArray(IS_RIGHT_ANSWERS);
         }
-        showCongratulation();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -67,15 +71,23 @@ public class TestResultFragment extends Fragment {
             }
 
         }
+        showCongratulation(view);
         return view;
     }
 
-    public void showCongratulation() {
-        //startActivity(new Intent(getContext(), CongratActivity.class));
-        getActivity().getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.container_congratulation, new CongratulationFragment(), "001")
-                .addToBackStack(null)
-                .commitAllowingStateLoss();
+    public void showCongratulation(View view) {
+        final KonfettiView konfettiView = view.findViewById(R.id.view_confetti);
+        konfettiView.build()
+                .addColors(getActivity().getResources().getColor(R.color.teal_700),
+                        getActivity().getResources().getColor(R.color.teal_200),
+                        getActivity().getResources().getColor(R.color.purple_500))
+                .setDirection(0.0, 359.0)
+                .setSpeed(1f, 5f)
+                .setFadeOutEnabled(true)
+                .setTimeToLive(2000L)
+                .addShapes(Shape.Square.INSTANCE, Shape.Circle.INSTANCE)
+                .addSizes(new Size(12, 5f))
+                .setPosition(0, (float)konfettiView.getWidth(), 0f, 0f)
+                .streamFor(400, 10000L);
     }
 }
