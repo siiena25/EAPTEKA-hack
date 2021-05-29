@@ -1,5 +1,7 @@
 package com.eapteka.eaptekatests.database;
 
+import com.eapteka.eaptekatests.test_models.Test;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -19,4 +21,7 @@ public interface UserApi {
     @Headers("Content-Type: application/json")
     @GET("Pills")
     Call<Pills> getAllPills();
+
+    @GET("/Users/{username}/Current tests/{number of test}.json")
+    Call<Test> getTest(@Path("username") String username, @Path("number of test") String numberOfTest);
 }
