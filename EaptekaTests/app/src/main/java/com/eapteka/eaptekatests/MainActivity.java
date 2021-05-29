@@ -49,12 +49,6 @@ public class MainActivity extends AppCompatActivity {
 //        pillViewModel.updateAllPills();
 //        pillViewModel.getAllPills().observe(this, observer);
 
-        /*getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.container, new TestResultFragment(), "000")
-                .addToBackStack(null)
-                .commitAllowingStateLoss();*/
-
 
         pillViewModel.updatePill("Arbidol");
         pillViewModel.getPill().observe(this, obs);

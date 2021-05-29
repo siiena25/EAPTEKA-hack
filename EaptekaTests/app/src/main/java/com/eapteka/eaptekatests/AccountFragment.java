@@ -36,49 +36,26 @@ public class AccountFragment extends BaseFragment {
 
         moodView = view.findViewById(R.id.mood_view);
         viewModel.accountData.observe(getViewLifecycleOwner(), accountData -> {
-            if (accountData.happyLevel > 0.85){
-                int imageId = getActivity()
-                        .getResources()
-                        .getIdentifier("ic_mood_the_happiest", "drawable", getActivity().getPackageName());
-                moodView.setBackground(AppCompatResources.getDrawable(getActivity(), imageId));
-            }
-            else if (accountData.happyLevel > 0.72){
-                int imageId = getActivity()
-                        .getResources()
-                        .getIdentifier("ic_mood_very_happy", "drawable", getActivity().getPackageName());
-                moodView.setBackground(AppCompatResources.getDrawable(getActivity(), imageId));
-            }
-            else if (accountData.happyLevel > 0.58){
-                int imageId = getActivity()
-                        .getResources()
-                        .getIdentifier("ic_mood_satisfied", "drawable", getActivity().getPackageName());
-                moodView.setBackground(AppCompatResources.getDrawable(getActivity(), imageId));
-            }
-            else if (accountData.happyLevel > 0.43){
-                int imageId = getActivity()
-                        .getResources()
-                        .getIdentifier("ic_mood_neutral", "drawable", getActivity().getPackageName());
-                moodView.setBackground(AppCompatResources.getDrawable(getActivity(), imageId));
-            }
-            else if (accountData.happyLevel > 0.29){
-                int imageId = getActivity()
-                        .getResources()
-                        .getIdentifier("ic_mood_dissatisfied", "drawable", getActivity().getPackageName());
-                moodView.setBackground(AppCompatResources.getDrawable(getActivity(), imageId));
-            }
-            else if (accountData.happyLevel > 0.15){
-                int imageId = getActivity()
-                        .getResources()
-                        .getIdentifier("ic_mood_bad", "drawable", getActivity().getPackageName());
-                moodView.setBackground(AppCompatResources.getDrawable(getActivity(), imageId));
-            }
-            else {
-                int imageId = getActivity()
-                        .getResources()
-                        .getIdentifier("ic_mood_dead", "drawable", getActivity().getPackageName());
-                moodView.setBackground(AppCompatResources.getDrawable(getActivity(), imageId));
-            }
+            String name;
+            if (accountData.happyLevel > 0.85)
+                name = "ic_mood_the_happiest";
+            else if (accountData.happyLevel > 0.72)
+                name = "ic_mood_very_happy";
+            else if (accountData.happyLevel > 0.58)
+                name = "ic_mood_satisfied";
+            else if (accountData.happyLevel > 0.43)
+                name = "ic_mood_neutral";
+            else if (accountData.happyLevel > 0.29)
+                name = "ic_mood_dissatisfied";
+            else if (accountData.happyLevel > 0.15)
+                name = "ic_mood_bad";
+            else
+                name = "ic_mood_dead";
 
+            int imageId = getActivity()
+                    .getResources()
+                    .getIdentifier(name, "drawable", getActivity().getPackageName());
+            moodView.setBackground(AppCompatResources.getDrawable(getActivity(), imageId));
         });
         callButtonTestsTapTargetPrompt();
         return view;
