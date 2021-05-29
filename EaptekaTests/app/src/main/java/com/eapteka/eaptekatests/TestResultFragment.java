@@ -1,20 +1,21 @@
 package com.eapteka.eaptekatests;
 
+import android.app.Dialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.Collections;
 
 import nl.dionsegijn.konfetti.KonfettiView;
 import nl.dionsegijn.konfetti.models.Shape;
@@ -24,13 +25,16 @@ public class TestResultFragment extends Fragment {
 
     private static final String RIGHT_ANSWERS_COUNT = "right_answers_count";
     private static final String IS_RIGHT_ANSWERS = "is_answer_right";
+    private static final String MOOD_LEVEL = "moodLevel";
     private int rightAnswersCount = 0;
-    private ArrayList<Boolean> isAnswerRight = new ArrayList<>();
+    private boolean[] isAnswerRight = new boolean[5];
     private ImageView image;
     private View view;
     private TextView tvResultPresent;
     private String coinsCount;
     private String discount;
+
+    private AccountVM viewModel;
 
     public TestResultFragment() {
         // Required empty public constructor
@@ -41,11 +45,9 @@ public class TestResultFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             rightAnswersCount = getArguments().getInt(RIGHT_ANSWERS_COUNT);
-            discount = getArguments().getString("discount");
-            coinsCount = getArguments().getString("coins_count");
-            for (Boolean bool : getArguments().getBooleanArray(IS_RIGHT_ANSWERS))
-                isAnswerRight.add(bool);
+            isAnswerRight = getArguments().getBooleanArray(IS_RIGHT_ANSWERS);
         }
+        viewModel = new ViewModelProvider(getActivity()).get(AccountVM.class);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -63,7 +65,6 @@ public class TestResultFragment extends Fragment {
                 .append("% СКИДКА")
                 .toString());
 
-
         if (rightAnswersCount < 4) {
             int imageId = getActivity().
                     getResources().
@@ -76,14 +77,20 @@ public class TestResultFragment extends Fragment {
         answerImages[1] = view.findViewById(R.id.question_1_result);
         answerImages[2] = view.findViewById(R.id.question_2_result);
         answerImages[3] = view.findViewById(R.id.question_3_result);
-        for (int i = 0; i < isAnswerRight.size(); i++) {
-            if (!isAnswerRight.get(i)) {
+
+        float delta = 0;
+        for (int i = 0; i < isAnswerRight.length; i++) {
+            if (!isAnswerRight[i]) {
                 int imageId = getActivity().
                         getResources().
                         getIdentifier("ic_wrong_answer", "drawable", getActivity().getPackageName());
                 answerImages[i].setBackground(AppCompatResources.getDrawable(getActivity(), imageId));
             }
+            else {
+                delta += 0.05;
+            }
         }
+        viewModel.updateHappyLevel(delta);
         showCongratulation(view);
         return view;
     }
