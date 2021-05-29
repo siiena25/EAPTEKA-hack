@@ -98,4 +98,8 @@ public class TestVM extends AndroidViewModel {
     public void updateAllTests(final String username) {
         testRepository.updateAllTests(username);
     }
+
+    public void updateTestInformation(final String username, final int numberOfTest) {
+        testRepository.updateTestInformation(username, numberOfTest);
+    }
 }
