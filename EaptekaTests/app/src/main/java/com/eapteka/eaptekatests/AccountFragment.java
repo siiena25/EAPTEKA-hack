@@ -3,6 +3,12 @@ package com.eapteka.eaptekatests;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.fragment.app.Fragment;
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.fragment.app.Fragment;
@@ -19,6 +25,7 @@ import uk.co.samuelwall.materialtaptargetprompt.extras.backgrounds.CirclePromptB
 import uk.co.samuelwall.materialtaptargetprompt.extras.focals.RectanglePromptFocal;
 
 public class AccountFragment extends BaseFragment {
+    private NavController navController;
 
     private AccountVM viewModel;
     private ImageView moodView;
@@ -57,7 +64,19 @@ public class AccountFragment extends BaseFragment {
                     .getIdentifier(name, "drawable", getActivity().getPackageName());
             moodView.setBackground(AppCompatResources.getDrawable(getActivity(), imageId));
         });
+
         callButtonTestsTapTargetPrompt();
+
+        navController = NavHostFragment.findNavController(this);
+
+        AppCompatButton buttonTests = view.findViewById(R.id.button_tests);
+        buttonTests.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_accountFragment_to_listAvaibleTestFragment);
+            }
+        });
+
         return view;
     }
 

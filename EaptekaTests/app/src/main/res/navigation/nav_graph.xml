@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/testFragment">
+    app:startDestination="@id/accountFragment">
 
     <fragment
         android:id="@+id/accountFragment"
@@ -11,14 +11,11 @@
         android:label="fragment_account"
         tools:layout="@layout/fragment_account" >
         <action
-            android:id="@+id/action_accountFragment_to_completedTestsFragment"
-            app:destination="@id/completedTestsFragment"
-            app:popUpTo="@id/accountFragment" />
-        <action
             android:id="@+id/action_accountFragment_to_listAvaibleTestFragment"
             app:destination="@id/listAvaibleTestFragment"
             app:popUpTo="@id/accountFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/testResultFragment"
         android:name="com.eapteka.eaptekatests.TestResultFragment"
@@ -28,25 +25,16 @@
             android:id="@+id/action_testResultFragment_to_accountFragment2"
             app:destination="@id/accountFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/testFragment"
         android:name="com.eapteka.eaptekatests.test.TestFragment"
-        android:label="fragment_test"
-        tools:layout="@layout/fragment_test" >
+        android:label="fragment_test">
         <action
             android:id="@+id/action_testFragment_to_testResultFragment"
             app:destination="@id/testResultFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/completedTestsFragment"
-        android:name="com.eapteka.eaptekatests.CompletedTestsFragment"
-        android:label="fragment_completed_tests"
-        tools:layout="@layout/fragment_completed_tests" >
-        <action
-            android:id="@+id/action_completedTestsFragment_to_testFragment"
-            app:destination="@id/testFragment"
-            app:popUpTo="@id/completedTestsFragment" />
-    </fragment>
+
     <fragment
         android:id="@+id/listAvaibleTestFragment"
         android:name="com.eapteka.eaptekatests.ListAvaibleTestFragment"
@@ -54,16 +42,16 @@
         tools:layout="@layout/fragment_list_avaible_test" >
         <action
             android:id="@+id/action_listAvaibleTestFragment_to_testFragment"
-            app:destination="@id/testFragment"
+            app:destination="@id/infoFragment"
             app:popUpTo="@id/listAvaibleTestFragment" />
     </fragment>
+
     <fragment
-        android:id="@+id/pillFragment"
-        android:name="com.eapteka.eaptekatests.PillFragment"
-        android:label="fragment_pill"
-        tools:layout="@layout/fragment_pill" >
+        android:id="@+id/infoFragment"
+        android:name="com.eapteka.eaptekatests.InfoFragment"
+        android:label="fragment_info">
         <action
-            android:id="@+id/action_pillFragment_to_testFragment"
+            android:id="@+id/action_infoFragment_to_testFragment"
             app:destination="@id/testFragment" />
     </fragment>
 </navigation>
