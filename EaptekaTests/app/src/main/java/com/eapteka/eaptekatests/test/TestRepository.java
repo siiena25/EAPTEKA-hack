@@ -11,6 +11,8 @@ import com.eapteka.eaptekatests.database.Logger;
 import com.eapteka.eaptekatests.database.UserApi;
 import com.eapteka.eaptekatests.test_models.Test;
 
+import java.util.ArrayList;
+
 import retrofit2.Response;
 
 public class TestRepository {
@@ -23,6 +25,7 @@ public class TestRepository {
     private final Logger logger;
 
     private final MutableLiveData<Test> testData = new MutableLiveData<>();
+    private final MutableLiveData<ArrayList<Test>> allTests = new MutableLiveData<>();
 
     public TestRepository(Context context) {
         this.context = context;
@@ -36,6 +39,10 @@ public class TestRepository {
         return testData;
     }
 
+    public MutableLiveData<ArrayList<Test>> getAllTests() {
+        return allTests;
+    }
+
     public void updateTestInformation(final String username, final String numberOfTest) {
         userApi.getTest(username, numberOfTest).enqueue(new DatabaseCallback<Test>(LOG_TAG) {
             @Override
@@ -47,6 +54,21 @@ public class TestRepository {
             public void onSuccessResponse(Response<Test> response) {
                 testData.postValue(response.body());
                 logger.log(response.body().getTitle());
+            }
+        });
+    }
+
+    public void updateAllTests(final String username) {
+        userApi.getAllTests(username).enqueue(new DatabaseCallback<ArrayList<Test>>(LOG_TAG) {
+            @Override
+            public void onNullResponse(Response<ArrayList<Test>> response) {
+                logger.errorLog("Fail with update");
+            }
+
+            @Override
+            public void onSuccessResponse(Response<ArrayList<Test>> response) {
+                allTests.postValue(response.body());
+                logger.log(Integer.toString(response.body().size()));
             }
         });
     }
