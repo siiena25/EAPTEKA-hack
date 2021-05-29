@@ -22,6 +22,8 @@ public class ListAvaibleTestFragment extends BaseFragment implements
         FinishedTestsAdapter.OnFinishedTestListener {
     private View bReturn;
 
+    private ArrayList<Test> listStartedTests = new ArrayList<>();
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,9 +38,11 @@ public class ListAvaibleTestFragment extends BaseFragment implements
         ArrayList<Test> tests = new ArrayList<>();
         tests.add(exampleTest);
 
+        listStartedTests.add(exampleTest);
+
         RecyclerView startedTestsList = view.findViewById(R.id.started_tests_list);
         startedTestsList.setLayoutManager(new LinearLayoutManager(getActivity()));
-        StartedTestsAdapter startedTestsAdapter = new StartedTestsAdapter(getActivity(), this, tests);
+        StartedTestsAdapter startedTestsAdapter = new StartedTestsAdapter(getActivity(), this, listStartedTests);
         startedTestsList.setAdapter(startedTestsAdapter);
 
         RecyclerView finishedTestsList = view.findViewById(R.id.finished_tests_list);
@@ -104,6 +108,7 @@ public class ListAvaibleTestFragment extends BaseFragment implements
 
     @Override
     public void onStartedTestClick(View view, int position) {
-
+        baseViewModel.selectedTest.setValue(listStartedTests.get(position));
+        NavHostFragment.findNavController(this).navigate(R.id.action_listAvaibleTestFragment_to_testFragment);
     }
 }

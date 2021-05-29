@@ -34,13 +34,6 @@ public class TestFragment extends BaseFragment implements StepLoader {
     public TestFragment() {
     }
 
-    public static TestFragment newInstance(Test test) {
-        TestFragment fragment = new TestFragment();
-        fragment.test = test;
-        return fragment;
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -52,6 +45,9 @@ public class TestFragment extends BaseFragment implements StepLoader {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        test = baseViewModel.selectedTest.getValue();
+        /*
         test = new Test();
         test.setDiscount(12);
         test.setCoinsCount(100);
@@ -91,6 +87,8 @@ public class TestFragment extends BaseFragment implements StepLoader {
                 variants3.get(2),
                 variants3);
         test.addNewQuestion(question2);
+
+         */
 
         viewModel = new ViewModelProvider(this).get(TestVM.class);
         if (test != null)
@@ -136,7 +134,7 @@ public class TestFragment extends BaseFragment implements StepLoader {
 
             bundle.putBooleanArray("is_answer_right", answersBool);
             bundle.putString("coins_count", viewModel.test.getValue().getCoinsCount().toString());
-            bundle.putString("discount", viewModel.test.getValue().getDiscount().toString());
+            //bundle.putString("discount", viewModel.test.getValue().getDiscount().toString());
 
             NavHostFragment.findNavController(this).navigate(R.id.action_testFragment_to_testResultFragment, bundle);
         }

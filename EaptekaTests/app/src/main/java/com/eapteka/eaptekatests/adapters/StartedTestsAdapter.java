@@ -17,25 +17,30 @@ import java.util.ArrayList;
 public class StartedTestsAdapter extends RecyclerView.Adapter<StartedTestsAdapter.ViewHolder> {
     private final LayoutInflater inflater;
     private final ArrayList<Test> tests;
-    private final OnStartedTestListener OnStartedTestListener;
+    private final OnStartedTestListener onStartedTestListener;
 
     public StartedTestsAdapter(Context context, OnStartedTestListener onStartedTestListener, ArrayList<Test> tests) {
         this.inflater = LayoutInflater.from(context);
         this.tests = tests;
-        this.OnStartedTestListener = onStartedTestListener;
+        this.onStartedTestListener = onStartedTestListener;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.started_test, parent, false);
-        return new StartedTestsAdapter.ViewHolder(view, OnStartedTestListener);
+        return new StartedTestsAdapter.ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Test test = tests.get(position);
         holder.testTitle.setText(test.getTitle());
+
+        holder.itemView.setOnClickListener(v -> {
+            onStartedTestListener.onStartedTestClick(v, position);
+        });
+
     }
 
     @Override
@@ -47,21 +52,14 @@ public class StartedTestsAdapter extends RecyclerView.Adapter<StartedTestsAdapte
         return tests.get(position);
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         final TextView testTitle;
-        OnStartedTestListener onStartedTestListener;
 
-        public ViewHolder(View view, OnStartedTestListener onStartedTestListener) {
+        public ViewHolder(View view) {
             super(view);
             testTitle = view.findViewById(R.id.med_name);
-            this.onStartedTestListener = onStartedTestListener;
-            view.setOnClickListener(this);
         }
 
-        @Override
-        public void onClick(View v) {
-            onStartedTestListener.onStartedTestClick(v, getAdapterPosition());
-        }
     }
 
     public interface OnStartedTestListener {
