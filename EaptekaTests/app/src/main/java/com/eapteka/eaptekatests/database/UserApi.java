@@ -15,5 +15,5 @@ public interface UserApi {
     Call<Pill> getPillByName(@Path("nameOfPill") String nameOfPill);
 
     @GET("/Pills.json")
-    Call<AllPills> getAllPills();
+    Call<Pills> getAllPills();
 }

@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 import retrofit2.Response;
 
@@ -55,14 +54,14 @@ public class PillRepository {
     }
 
     public void updateAllPillsFromRemoteDB() {
-        userApi.getAllPills().enqueue(new DatabaseCallback<AllPills>(LOG_TAG) {
+        userApi.getAllPills().enqueue(new DatabaseCallback<Pills>(LOG_TAG) {
             @Override
-            public void onNullResponse(Response<AllPills> response) {
+            public void onNullResponse(Response<Pills> response) {
                 logger.errorLog("Fail with update");
             }
 
             @Override
-            public void onSuccessResponse(Response<AllPills> response) {
+            public void onSuccessResponse(Response<Pills> response) {
                 logger.log("Success response");
                 ArrayList<Pill> pills= response.body().pills;
                 assert pills != null;

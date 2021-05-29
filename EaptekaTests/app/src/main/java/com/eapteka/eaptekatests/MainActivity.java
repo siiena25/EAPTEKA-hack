@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                 logger.log(pill.substance);
             }
         };
-        pillViewModel = new ViewModelProvider(this).get(PillViewModel.class);
+//        pillViewModel = new ViewModelProvider(this).get(PillViewModel.class);
 //        pillViewModel.updateAllPills();
 //        pillViewModel
 //                .getAllPills()
