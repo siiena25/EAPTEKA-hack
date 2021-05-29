@@ -52,49 +52,8 @@ public class TestFragment extends BaseFragment implements StepLoader {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        test = new Test();
-        test.setDiscount(12);
-        test.setCoinsCount(100);
-
-        ArrayList<String> variants1 = new ArrayList<>();
-        variants1.add("один");
-        variants1.add("два");
-        variants1.add("три");
-        variants1.add("четыре");
-        Question question = new Question("ПОКАЗАНИЯ",
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-                QuestionType.SelectVariant,
-                variants1.get(2),
-                variants1);
-        test.addNewQuestion(question);
-
-        ArrayList<String> variants2 = new ArrayList<>();
-        variants2.add("4");
-        variants2.add("3");
-        variants2.add("1");
-        variants2.add("2");
-        Question question1 = new Question("СРОК ГОДНОСТИ",
-                "СКОЛЬКО МЕСЯЦЕВ МОЖНО ХРАНИТЬ?",
-                QuestionType.SelectShelfTime,
-                variants2.get(2),
-                variants2);
-        test.addNewQuestion(question1);
-
-        ArrayList<String> variants3 = new ArrayList<>();
-        variants3.add("1");
-        variants3.add("2");
-        variants3.add("3");
-        variants3.add("4");
-        Question question2 = new Question("ХРАНЕНИЕ",
-                "ВЫБЕРИТЕ ОСОБЕННОСТИ ХРАНЕНИЯ",
-                QuestionType.SelectStorageType,
-                variants3.get(2),
-                variants3);
-        test.addNewQuestion(question2);
-
         viewModel = new ViewModelProvider(this).get(TestVM.class);
-        if (test != null)
-            viewModel.test.setValue(test);
+        viewModel.updateTestInformation("Alexey", 0);
     }
 
     @Override
