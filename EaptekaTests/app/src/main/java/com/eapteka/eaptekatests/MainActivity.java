@@ -3,6 +3,7 @@ package com.eapteka.eaptekatests;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 
@@ -44,15 +45,8 @@ public class MainActivity extends AppCompatActivity {
                 logger.log(pill.substance);
             }
         };
-//        pillViewModel = new ViewModelProvider(this).get(PillViewModel.class);
-//        pillViewModel.updateAllPills();
-//        pillViewModel
-//                .getAllPills()
-//                .observe(this, observer);
 
         pillViewModel.updatePill("Arbidol");
         pillViewModel.getPill().observe(this, obs);
     }
-
-
 }
