@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4fedc223-a373-46ab-8cef-d6d7331543a0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/TestResultFragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EaptekaTests/app/src/main/res/drawable/ic_right_answer.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EaptekaTests/app/src/main/res/layout/fragment_test_result.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EaptekaTests/app/src/main/res/values-night/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EaptekaTests/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/EaptekaTests/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EaptekaTests/.idea/vcs.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,10 +138,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="93" y="93" width="1095" height="495" key="AVDManager/0.0.1280.680@0.0.1280.680" timestamp="1622226150889" />
-    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1622234919283">
+    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1622282742960">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1622234919283" />
+    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1622282742960" />
     <state x="316" y="45" key="NewModule_or_Project.wizard" timestamp="1622234460175">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

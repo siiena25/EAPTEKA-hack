@@ -28,6 +28,7 @@
     <string name="instruction">Инструкция по применению:</string>
     <string name="start_test">Пройти тест</string>
     <string name="base">Имеются противопоказания. Необходимо проконсультироваться со специалистом.</string>
+    <string name="you_got_scores">Начислено n баллов</string>
 
     <string name="info_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
         sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.

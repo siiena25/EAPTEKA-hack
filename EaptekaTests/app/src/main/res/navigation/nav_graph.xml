@@ -20,12 +20,12 @@
             app:popUpTo="@id/accountFragment" />
     </fragment>
     <fragment
-        android:id="@+id/finalTestFragment"
-        android:name="com.eapteka.eaptekatests.FinalTestFragment"
-        android:label="fragment_final_test"
-        tools:layout="@layout/fragment_final_test" >
+        android:id="@+id/testResultFragment"
+        android:name="com.eapteka.eaptekatests.TestResultFragment"
+        android:label="fragment_test_result"
+        tools:layout="@layout/fragment_test_result">
         <action
-            android:id="@+id/action_finalTestFragment_to_accountFragment2"
+            android:id="@+id/action_testResultFragment_to_accountFragment2"
             app:destination="@id/accountFragment" />
     </fragment>
     <fragment
@@ -34,8 +34,8 @@
         android:label="fragment_test"
         tools:layout="@layout/fragment_test" >
         <action
-            android:id="@+id/action_testFragment_to_finalTestFragment"
-            app:destination="@id/finalTestFragment" />
+            android:id="@+id/action_testFragment_to_testResultFragment"
+            app:destination="@id/testResultFragment" />
     </fragment>
     <fragment
         android:id="@+id/completedTestsFragment"
