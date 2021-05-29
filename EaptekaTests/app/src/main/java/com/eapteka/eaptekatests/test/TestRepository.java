@@ -43,7 +43,7 @@ public class TestRepository {
         return allTests;
     }
 
-    public void updateTestInformation(final String username, final String numberOfTest) {
+    public void updateTestInformation(final String username, final int numberOfTest) {
         userApi.getTest(username, numberOfTest).enqueue(new DatabaseCallback<Test>(LOG_TAG) {
             @Override
             public void onNullResponse(Response<Test> response) {

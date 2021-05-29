@@ -26,17 +26,17 @@
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:main" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:newTests" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c23cb8a5-d8ea-4494-bb63-9974af46d6eb" name="Default Changelist" comment="..">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/TestResultFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/TestResultFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/database/UserApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/database/UserApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/test/TestFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/test/TestFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/test/TestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/test/TestRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/test_models/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/test_models/Question.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/test/TestVM.java" beforeDir="false" afterPath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/test/TestVM.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -213,7 +213,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="main" />
+                        <option value="newTests" />
                       </list>
                     </value>
                   </entry>
@@ -261,10 +261,11 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="100" y="100" width="1080" height="600" key="ShowDiffWithBranchDialog/0.0.1280.800@0.0.1280.800" timestamp="1622230349003" />
-    <state x="240" y="137" key="Vcs.Push.Dialog.v2" timestamp="1622299954126">
-      <screen x="0" y="0" width="1280" height="800" />
+    <state x="240" y="145" key="Vcs.Push.Dialog.v2" timestamp="1622317793945">
+      <screen x="0" y="25" width="1280" height="698" />
     </state>
     <state x="240" y="137" key="Vcs.Push.Dialog.v2/0.0.1280.800@0.0.1280.800" timestamp="1622299954126" />
+    <state x="240" y="145" key="Vcs.Push.Dialog.v2/0.25.1280.698@0.25.1280.698" timestamp="1622317793945" />
     <state x="379" y="117" key="git4idea.branch.GitSmartOperationDialog" timestamp="1622300676091">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
