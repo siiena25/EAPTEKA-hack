@@ -65,7 +65,7 @@ public class QuestionSelectVariantFragment extends TestBaseFragment {
     }
 
 
-    private void animate(int currentViewPos, Boolean isCurrentAnswer, int selectedViewPos) {
+    private void animate(int currentViewPos, Boolean isSelectedCurrent, int selectedViewPos) {
         int durationTime = 1000;
         float scaleUp = 1.1f;
         float scaleDown = 0.6f;
@@ -75,7 +75,7 @@ public class QuestionSelectVariantFragment extends TestBaseFragment {
             View view = gridLayout.getChildAt(i);
             view.setClickable(false);
 
-            if (isCurrentAnswer) {
+            if (isSelectedCurrent) {
                 if (i != currentViewPos)
                     view.animate().alpha(alphaDown).setDuration(durationTime);
                 else
@@ -89,6 +89,7 @@ public class QuestionSelectVariantFragment extends TestBaseFragment {
                     view.animate().alpha(alphaDown).setDuration(durationTime);
             }
         }
+        parentViewModel.addAnswer(isSelectedCurrent);
         showNextButton();
     }
 }

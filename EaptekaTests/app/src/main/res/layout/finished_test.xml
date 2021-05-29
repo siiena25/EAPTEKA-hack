@@ -2,55 +2,49 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView"
     app:cardUseCompatPadding="true"
-    app:cardCornerRadius="5dp"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    app:cardCornerRadius="6dp"
+    android:layout_width="130dp"
+    android:layout_height="180dp"
     android:layout_gravity="center">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="5dp"
-        android:weightSum="2"
+        android:layout_height="match_parent"
         android:background="@drawable/selector"
-        android:orientation="horizontal">
+        android:gravity="center"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/med_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:padding="6dp"
-            android:layout_weight="1"
-            android:textSize="18sp"
-            android:textColor="@color/purple"
-            android:text="@string/medicine" />
+        <ImageView
+            android:id="@+id/character_post_image"
+            android:src="@drawable/ic_launcher_background"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:clickable="true"
+            android:focusable="true" />
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            />
-
-        <ImageButton
-            android:id="@+id/bonus_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="invisible"
-            android:background="@drawable/ic_baseline_bonus_24" />
-
-        <TextView
+        <com.eapteka.eaptekatests.custom_view.CustomGradientTextView
             android:id="@+id/progress_finished"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:padding="6dp"
-            android:layout_weight="1"
+            android:drawableLeft="@drawable/ic_baseline_bonus_24"
+            android:paddingTop="3dp"
             android:textSize="18sp"
             android:textColor="@color/purple"
             android:text="@string/progress" />
+
+        <com.eapteka.eaptekatests.custom_view.CustomGradientTextView
+            android:id="@+id/med_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="18sp"
+            android:textColor="@color/purple"
+            android:text="@string/medicine" />
 
     </LinearLayout>
 

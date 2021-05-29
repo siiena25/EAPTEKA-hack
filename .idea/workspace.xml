@@ -40,6 +40,8 @@
       <change beforePath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/database/PillRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/database/PillRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/database/Pills.java" beforeDir="false" afterPath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/database/Pills.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/database/UserApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/database/UserApi.java" afterDir="false" />
+    <list default="true" id="4fedc223-a373-46ab-8cef-d6d7331543a0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/EaptekaTests/.idea/vcs.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -266,6 +268,13 @@
     <state x="100" y="100" width="1080" height="600" key="ShowDiffWithBranchDialog/0.0.1280.800@0.0.1280.800" timestamp="1622230349003" />
     <state x="240" y="137" key="Vcs.Push.Dialog.v2" timestamp="1622280468164">
       <screen x="0" y="0" width="1280" height="800" />
+    <state x="93" y="93" width="1095" height="495" key="AVDManager/0.0.1280.680@0.0.1280.680" timestamp="1622226150889" />
+    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1622282742960">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1622282742960" />
+    <state x="316" y="45" key="NewModule_or_Project.wizard" timestamp="1622234460175">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="240" y="137" key="Vcs.Push.Dialog.v2/0.0.1280.800@0.0.1280.800" timestamp="1622280468164" />
     <state x="406" y="303" key="git4idea.ui.GitStashDialog" timestamp="1622279137950">
