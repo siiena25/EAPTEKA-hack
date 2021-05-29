@@ -20,11 +20,11 @@ import com.eapteka.eaptekatests.test_models.Question;
 import com.eapteka.eaptekatests.test_models.QuestionType;
 import com.eapteka.eaptekatests.test_models.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class TestFragment extends BaseFragment implements StepLoader {
-    private ViewGroup containerQuestionsFragment;
     private Test test;
     private TestVM viewModel;
     private TextView tvProgress;
@@ -33,8 +33,7 @@ public class TestFragment extends BaseFragment implements StepLoader {
 
     public TestFragment() {
     }
-
-
+    
     public static TestFragment newInstance(Test test) {
         TestFragment fragment = new TestFragment();
         fragment.test = test;
@@ -46,7 +45,6 @@ public class TestFragment extends BaseFragment implements StepLoader {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_test, container, false);
-        containerQuestionsFragment = view.findViewById(R.id.container_questions);
         bBackToMenu = view.findViewById(R.id.b_back_to_menu);
         return view;
     }
@@ -55,44 +53,47 @@ public class TestFragment extends BaseFragment implements StepLoader {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         test = new Test();
+        test.setDiscount(12);
+        test.setCoinsCount(100);
 
         Question question = new Question();
         question.type = QuestionType.SelectVariant;
-        question.title = "Показания";
+        question.title = "ПОКАЗАНИЯ";
         question.desc = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
-        question.variants.add("первый вариант");
-        question.variants.add("второй вариант");
-        question.variants.add("пятый вариант");
-        question.variants.add("и шестой вариант");
+        question.variants.add("один");
+        question.variants.add("два");
+        question.variants.add("три");
+        question.variants.add("четыре");
         question.correctVariant = question.variants.get(2);
-        test.questions.add(question);
+        test.addNewQuestion(question);
 
         Question question1 = new Question();
         question1.type = QuestionType.SelectShelfTime;
-        question1.title = "Срок годности";
-        question1.desc = "Сколько месяцев?";
+        question1.title = "СРОК ГОДНОСТИ";
+        question1.desc = "СКОЛЬКО МЕСЯЦЕВ МОЖНО ХРАНИТЬ?";
         question1.variants.add("4");
         question1.variants.add("3");
         question1.variants.add("1");
         question1.variants.add("2");
         question1.correctVariant = question1.variants.get(2);
-        test.questions.add(question1);
+        test.addNewQuestion(question1);
 
 
         Question question2 = new Question();
         question2.type = QuestionType.SelectStorageType;
-        question2.title = "хранение";
-        question2.desc = "Выберите способ хранения";
+        question2.title = "ХРАНЕНИЕ";
+        question2.desc = "ВЫБЕРИТЕ ОСОБЕННОСТИ ХРАНЕНИЯ";
         question2.variants.add("1");
         question2.variants.add("2");
         question2.variants.add("3");
         question2.variants.add("4");
         question2.correctVariant = question2.variants.get(2);
-        test.questions.add(question2);
+        test.addNewQuestion(question2);
 
         viewModel = new ViewModelProvider(this).get(TestVM.class);
-        if (test != null)
-            viewModel.test.setValue(test);
+        //TODO test
+//        if (test != null)
+//            viewModel.test.setValue(test);
     }
 
     @Override
@@ -103,7 +104,7 @@ public class TestFragment extends BaseFragment implements StepLoader {
         pbProgress = getView().findViewById(R.id.pb_progress);
 
         viewModel.test.observe(getViewLifecycleOwner(), test -> {
-            pbProgress.setMax(test.questions.size());
+            pbProgress.setMax(test.getCountOfQuestions());
             loadNextStep();
         });
         viewModel.currentProgressInt.observe(getViewLifecycleOwner(), progress -> pbProgress.setProgress(progress));
@@ -126,8 +127,16 @@ public class TestFragment extends BaseFragment implements StepLoader {
                     .commit();
         else{
             Bundle bundle = new Bundle();
-            bundle.putInt("right_answers_count", 2);
-            bundle.putBooleanArray("is_answer_right", new boolean[]{true, false, true, false, false});
+            bundle.putInt("right_answers_count", viewModel.getRightAnswerCount());
+            ArrayList<Boolean> answers = viewModel.answers.getValue();
+            boolean[] answersBool = new boolean[answers.size()];
+            for(int i = 0; i < answers.size(); i++)
+                answersBool[i] = answers.get(i);
+
+            bundle.putBooleanArray("is_answer_right", answersBool);
+            bundle.putString("coins_count", viewModel.test.getValue().getCoinsCount().toString());
+            bundle.putString("discount", viewModel.test.getValue().getDiscount().toString());
+
             NavHostFragment.findNavController(this).navigate(R.id.action_testFragment_to_testResultFragment, bundle);
         }
     }

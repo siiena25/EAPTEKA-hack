@@ -39,14 +39,12 @@ public class QuestionSelectShelfTimeFragment extends TestBaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @SuppressLint("SetTextI18n")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
 
         bPlus = getView().findViewById(R.id.b_plus);
         bMinus = getView().findViewById(R.id.b_minus);
@@ -69,9 +67,10 @@ public class QuestionSelectShelfTimeFragment extends TestBaseFragment {
                         .scaleX(1.1f)
                         .scaleY(1.1f)
                         .setDuration(1000);
+                tvApply.setText("Правильный ответ!");
             }
+            parentViewModel.addAnswer(isSelectedCurrent);
             showNextButton();
-
         });
 
         bPlus.setOnClickListener(v -> {

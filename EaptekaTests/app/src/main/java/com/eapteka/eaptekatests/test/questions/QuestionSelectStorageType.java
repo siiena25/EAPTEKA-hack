@@ -72,8 +72,7 @@ public class QuestionSelectStorageType extends TestBaseFragment {
 
     }
 
-
-    private void animate(int currentViewPos, Boolean isCurrentAnswer, int selectedViewPos) {
+    private void animate(int currentViewPos, Boolean isSelectedCurrent, int selectedViewPos) {
         int durationTime = 1000;
         float scaleUp = 1.1f;
         float scaleDown = 0.6f;
@@ -83,7 +82,7 @@ public class QuestionSelectStorageType extends TestBaseFragment {
             Integer i = buttons.indexOf(view);
             view.setClickable(false);
 
-            if (isCurrentAnswer) {
+            if (isSelectedCurrent) {
                 if (i != currentViewPos)
                     view.animate().alpha(alphaDown).setDuration(durationTime);
                 else
@@ -97,7 +96,7 @@ public class QuestionSelectStorageType extends TestBaseFragment {
                     view.animate().alpha(alphaDown).setDuration(durationTime);
             }
         }
+        parentViewModel.addAnswer(isSelectedCurrent);
         showNextButton();
     }
-
 }
