@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.eapteka.eaptekatests.custom_view.CustomGradientTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/item_question_variant_background"
+    tools:text="some text"
+    android:paddingHorizontal="10dp"
+    android:paddingVertical="10dp"
+    android:textSize="18sp"
+    android:layout_gravity="center"
+    android:maxWidth="160dp"
+    android:gravity="center_horizontal"
+    android:layout_marginTop="8dp"
+    android:textAllCaps="true"
+    >
+
+</com.eapteka.eaptekatests.custom_view.CustomGradientTextView>

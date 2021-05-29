@@ -2,6 +2,7 @@
     <string name="app_name">EaptekaTests</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="next">далее</string>
     <string name="profile">Профиль</string>
     <string name="edit_data">Редактировать контактные данные</string>
     <string name="notification_icon">Notification icon</string>
@@ -19,4 +20,8 @@
     <string name="app_version">Версия 4.7.8</string>
     <string name="exit">ВЫХОД</string>
     <string name="your_test_result">ВАШ РЕЗУЛЬТАТ</string>
+    <string name="medicine">Лекарство</string>
+    <string name="current_tests">Текущие тесты:</string>
+    <string name="finished_tests">Пройденные тесты:</string>
+    <string name="progress">1/4</string>
 </resources>
