@@ -24,4 +24,6 @@
     <string name="current_tests">Текущие тесты:</string>
     <string name="finished_tests">Пройденные тесты:</string>
     <string name="progress">1/4</string>
+    <string name="achievements">Ваши достижения:</string>
+    <string name="current_achievement">Пройти 5 тестов</string>
 </resources>
