@@ -83,7 +83,7 @@ public class TestResultFragment extends Fragment {
         answerImages[3] = view.findViewById(R.id.question_3_result);
         answerImages[4] = view.findViewById(R.id.question_4_result);
         float delta = 0;
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < isAnswerRight.length; i++) {
             if (!isAnswerRight[i]) {
                 int imageId = getActivity().
                         getResources().
