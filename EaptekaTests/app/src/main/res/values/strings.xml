@@ -26,4 +26,5 @@
     <string name="progress">1/4</string>
     <string name="achievements">Ваши достижения:</string>
     <string name="current_achievement">Пройти 5 тестов</string>
+    <string name="you_got_scores">Начислено n баллов</string>
 </resources>

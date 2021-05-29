@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 
@@ -45,6 +46,13 @@ public class MainActivity extends AppCompatActivity {
                 logger.log(pill.substance);
             }
         };
+
+        /*getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.container, new TestResultFragment(), "000")
+                .addToBackStack(null)
+                .commitAllowingStateLoss();*/
+
 
         pillViewModel.updatePill("Arbidol");
         pillViewModel.getPill().observe(this, obs);
