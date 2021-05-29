@@ -54,7 +54,6 @@ public class QuestionSelectVariantFragment extends TestBaseFragment {
                 if (isCurrentAnswer)
                     currentViewPos = viewPos;
 
-
                 variantView.setOnClickListener(v -> {
                     animate(currentViewPos, isCurrentAnswer, viewPos);
                 });

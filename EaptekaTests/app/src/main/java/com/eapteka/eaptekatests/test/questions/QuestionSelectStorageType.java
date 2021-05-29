@@ -72,7 +72,6 @@ public class QuestionSelectStorageType extends TestBaseFragment {
 
     }
 
-
     private void animate(int currentViewPos, Boolean isSelectedCurrent, int selectedViewPos) {
         int durationTime = 1000;
         float scaleUp = 1.1f;
@@ -100,5 +99,4 @@ public class QuestionSelectStorageType extends TestBaseFragment {
         parentViewModel.addAnswer(isSelectedCurrent);
         showNextButton();
     }
-
 }
