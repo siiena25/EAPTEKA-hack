@@ -5,6 +5,13 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 
 public class Pills {
-    @SerializedName("Pills")
-    public ArrayList<Pill> pills;
+    private ArrayList<Pill> pills;
+
+    public void setPills(ArrayList<Pill> pills) {
+        this.pills = pills;
+    }
+
+    public ArrayList<Pill> getPills() {
+        return pills;
+    }
 }
