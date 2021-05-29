@@ -56,38 +56,40 @@ public class TestFragment extends BaseFragment implements StepLoader {
         test.setDiscount(12);
         test.setCoinsCount(100);
 
-        Question question = new Question();
-        question.type = QuestionType.SelectVariant;
-        question.title = "ПОКАЗАНИЯ";
-        question.desc = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
-        question.variants.add("один");
-        question.variants.add("два");
-        question.variants.add("три");
-        question.variants.add("четыре");
-        question.correctVariant = question.variants.get(2);
+        ArrayList<String> variants1 = new ArrayList<>();
+        variants1.add("один");
+        variants1.add("два");
+        variants1.add("три");
+        variants1.add("четыре");
+        Question question = new Question("ПОКАЗАНИЯ",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                QuestionType.SelectVariant,
+                variants1.get(2),
+                variants1);
         test.addNewQuestion(question);
 
-        Question question1 = new Question();
-        question1.type = QuestionType.SelectShelfTime;
-        question1.title = "СРОК ГОДНОСТИ";
-        question1.desc = "СКОЛЬКО МЕСЯЦЕВ МОЖНО ХРАНИТЬ?";
-        question1.variants.add("4");
-        question1.variants.add("3");
-        question1.variants.add("1");
-        question1.variants.add("2");
-        question1.correctVariant = question1.variants.get(2);
+        ArrayList<String> variants2 = new ArrayList<>();
+        variants2.add("4");
+        variants2.add("3");
+        variants2.add("1");
+        variants2.add("2");
+        Question question1 = new Question("СРОК ГОДНОСТИ",
+                "СКОЛЬКО МЕСЯЦЕВ МОЖНО ХРАНИТЬ?",
+                QuestionType.SelectShelfTime,
+                variants2.get(2),
+                variants2);
         test.addNewQuestion(question1);
 
-
-        Question question2 = new Question();
-        question2.type = QuestionType.SelectStorageType;
-        question2.title = "ХРАНЕНИЕ";
-        question2.desc = "ВЫБЕРИТЕ ОСОБЕННОСТИ ХРАНЕНИЯ";
-        question2.variants.add("1");
-        question2.variants.add("2");
-        question2.variants.add("3");
-        question2.variants.add("4");
-        question2.correctVariant = question2.variants.get(2);
+        ArrayList<String> variants3 = new ArrayList<>();
+        variants3.add("1");
+        variants3.add("2");
+        variants3.add("3");
+        variants3.add("4");
+        Question question2 = new Question("ХРАНЕНИЕ",
+                "ВЫБЕРИТЕ ОСОБЕННОСТИ ХРАНЕНИЯ",
+                QuestionType.SelectStorageType,
+                variants3.get(2),
+                variants3);
         test.addNewQuestion(question2);
 
         viewModel = new ViewModelProvider(this).get(TestVM.class);

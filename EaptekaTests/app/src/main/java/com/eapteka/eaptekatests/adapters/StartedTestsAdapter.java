@@ -34,7 +34,7 @@ public class StartedTestsAdapter extends RecyclerView.Adapter<StartedTestsAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Test test = tests.get(position);
-        holder.stockTickerText.setText(test.title);
+        holder.stockTickerText.setText(test.getTitle());
     }
 
     @Override
