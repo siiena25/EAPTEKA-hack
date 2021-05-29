@@ -23,7 +23,7 @@ import nl.dionsegijn.konfetti.models.Size;
 public class TestResultFragment extends Fragment {
 
     private static final String RIGHT_ANSWERS_COUNT = "right_answers_count";
-    private static final String IS_RIGHT_ANSWERS = "is_right_answers";
+    private static final String IS_RIGHT_ANSWERS = "is_answer_right";
     private int rightAnswersCount = 0;
     private boolean[] isAnswerRight = new boolean[5];
     private ImageView image;

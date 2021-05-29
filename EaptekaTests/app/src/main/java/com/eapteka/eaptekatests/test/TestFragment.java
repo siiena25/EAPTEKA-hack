@@ -124,8 +124,12 @@ public class TestFragment extends BaseFragment implements StepLoader {
                     .replace(R.id.container_questions, fragment, null)
                     .addToBackStack(null)
                     .commit();
-        else
-            NavHostFragment.findNavController(this).navigate(R.id.action_testFragment_to_testResultFragment);
+        else{
+            Bundle bundle = new Bundle();
+            bundle.putInt("right_answers_count", 2);
+            bundle.putBooleanArray("is_answer_right", new boolean[]{true, false, true, false, false});
+            NavHostFragment.findNavController(this).navigate(R.id.action_testFragment_to_testResultFragment, bundle);
+        }
     }
 
     @Override
