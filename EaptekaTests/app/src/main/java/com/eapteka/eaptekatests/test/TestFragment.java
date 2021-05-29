@@ -125,7 +125,7 @@ public class TestFragment extends BaseFragment implements StepLoader {
                     .addToBackStack(null)
                     .commit();
         else
-            NavHostFragment.findNavController(this).navigate(R.id.action_testFragment_to_finalTestFragment);
+            NavHostFragment.findNavController(this).navigate(R.id.action_testFragment_to_testResultFragment);
     }
 
     @Override
