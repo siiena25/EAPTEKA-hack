@@ -71,7 +71,6 @@ public class TestResultFragment extends Fragment {
     }
 
     public void showCongratulation() {
-        //startActivity(new Intent(getContext(), CongratActivity.class));
         getActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.container_congratulation, new CongratulationFragment(), "001")

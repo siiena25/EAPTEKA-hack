@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
                 .replace(R.id.container, new TestResultFragment(), "000")
                 .addToBackStack(null)
                 .commitAllowingStateLoss();*/
-    }
 
 
         pillViewModel.updatePill("Arbidol");
