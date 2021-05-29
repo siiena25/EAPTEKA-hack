@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Response;
 
@@ -63,12 +64,9 @@ public class PillRepository {
             @Override
             public void onSuccessResponse(Response<Pills> response) {
                 logger.log("Success response");
-                ArrayList<Pill> pills= response.body().pills;
+                List pills= response.body().getPills();
                 assert pills != null;
-                for (Pill pill : pills) {
-                    logger.log(pill.name);
-                }
-                allPills.postValue(pills);
+
             }
         });
     }

@@ -15,6 +15,7 @@ import com.eapteka.eaptekatests.test_models.Question;
 
 public class TestBaseFragment extends BaseFragment {
     protected QuestionVM viewModel;
+    protected TestVM parentViewModel;
     private Question question;
     private StepLoader stepLoader;
     protected TextView tvTitle;
@@ -31,6 +32,8 @@ public class TestBaseFragment extends BaseFragment {
             viewModel.question.setValue(question);
         if(stepLoader != null)
             viewModel.stepLoader.setValue(stepLoader);
+
+        parentViewModel = new ViewModelProvider(getParentFragment()).get(TestVM.class);
     }
 
     @Override

@@ -69,8 +69,8 @@ public class QuestionSelectShelfTimeFragment extends TestBaseFragment {
                         .setDuration(1000);
                 tvApply.setText("Правильный ответ!");
             }
+            parentViewModel.addAnswer(isSelectedCurrent);
             showNextButton();
-
         });
 
         bPlus.setOnClickListener(v -> {
