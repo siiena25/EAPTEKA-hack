@@ -17,7 +17,7 @@
         android:background="@drawable/selector"
         android:orientation="horizontal">
 
-        <TextView
+        <com.eapteka.eaptekatests.custom_view.CustomGradientTextView
             android:id="@+id/med_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
