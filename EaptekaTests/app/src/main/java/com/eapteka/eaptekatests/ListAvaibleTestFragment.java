@@ -22,7 +22,8 @@ public class ListAvaibleTestFragment extends BaseFragment implements
         FinishedTestsAdapter.OnFinishedTestListener {
     private View bReturn;
 
-    private ArrayList<Test> listStartedTests = new ArrayList<>();
+    private final ArrayList<Test> listStartedTests = new ArrayList<>();
+    private final ArrayList<Test> listFinishedTest = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,10 +36,9 @@ public class ListAvaibleTestFragment extends BaseFragment implements
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_list_avaible_test, container, false);
 
         Test exampleTest = exampleTestInit();
-        ArrayList<Test> tests = new ArrayList<>();
-        tests.add(exampleTest);
 
         listStartedTests.add(exampleTest);
+        listFinishedTest.add(exampleTest);
 
         RecyclerView startedTestsList = view.findViewById(R.id.started_tests_list);
         startedTestsList.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -46,11 +46,11 @@ public class ListAvaibleTestFragment extends BaseFragment implements
         startedTestsList.setAdapter(startedTestsAdapter);
 
         RecyclerView finishedTestsList = view.findViewById(R.id.finished_tests_list);
-        finishedTestsList.setLayoutManager(new LinearLayoutManager(getActivity()));
-        FinishedTestsAdapter finishedTestsAdapter = new FinishedTestsAdapter(getActivity(), this, tests);
+        finishedTestsList.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        FinishedTestsAdapter finishedTestsAdapter = new FinishedTestsAdapter(getActivity(), this, listFinishedTest);
         finishedTestsList.setAdapter(finishedTestsAdapter);
 
-        bReturn  = view.findViewById(R.id.return_to_profile);
+        bReturn = view.findViewById(R.id.return_to_profile);
         bReturn.setOnClickListener(v -> {
             NavHostFragment.findNavController(this).popBackStack();
         });
@@ -103,7 +103,8 @@ public class ListAvaibleTestFragment extends BaseFragment implements
 
     @Override
     public void onFinishedTestClick(View view, int position) {
-
+        baseViewModel.selectedTest.setValue(listFinishedTest.get(position));
+        NavHostFragment.findNavController(this).navigate(R.id.action_listAvaibleTestFragment_to_testFragment);
     }
 
     @Override
@@ -111,4 +112,5 @@ public class ListAvaibleTestFragment extends BaseFragment implements
         baseViewModel.selectedTest.setValue(listStartedTests.get(position));
         NavHostFragment.findNavController(this).navigate(R.id.action_listAvaibleTestFragment_to_testFragment);
     }
+
 }

@@ -2,6 +2,6 @@
 <ImageView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
+    android:layout_margin="@dimen/margin_answer_view"
     android:background="@drawable/ic_right_answer"
     xmlns:android="http://schemas.android.com/apk/res/android" />
