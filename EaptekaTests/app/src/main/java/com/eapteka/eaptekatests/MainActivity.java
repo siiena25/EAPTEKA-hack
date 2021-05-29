@@ -54,8 +54,4 @@ public class MainActivity extends AppCompatActivity {
         pillViewModel.updatePill("Arbidol");
         pillViewModel.getPill().observe(this, obs);
     }
-
-    public void onClickButtonTests(View view) {
-        System.out.println("Clicked");
-    }
 }

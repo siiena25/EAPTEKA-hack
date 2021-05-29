@@ -1,24 +1,24 @@
 package com.eapteka.eaptekatests;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.eapteka.eaptekatests.adapters.FinishedTestsAdapter;
+import com.eapteka.eaptekatests.adapters.StartedTestsAdapter;
 import com.eapteka.eaptekatests.test_models.Question;
 import com.eapteka.eaptekatests.test_models.QuestionType;
 import com.eapteka.eaptekatests.test_models.Test;
 
 import java.util.ArrayList;
 
-public class ListAvaibleTestFragment extends BaseFragment {
-    private View bReturn;
+public class ListAvaibleTestFragment extends BaseFragment implements
+        StartedTestsAdapter.OnStartedTestListener,
+        FinishedTestsAdapter.OnFinishedTestListener {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,20 +29,27 @@ public class ListAvaibleTestFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_list_avaible_test, container, false);
-        RecyclerView finishedTestsList = view.findViewById(R.id.finished_tests_list);
-        RecyclerView startedTestsList = view.findViewById(R.id.started_tests_list);
-        Test exampleTest = exampleTestInit();
 
-        bReturn  = view.findViewById(R.id.return_to_profile);
-        bReturn.setOnClickListener(v -> {
-            NavHostFragment.findNavController(this).popBackStack();
-        });
+        Test exampleTest = exampleTestInit();
+        ArrayList<Test> tests = new ArrayList<>();
+        tests.add(exampleTest);
+
+        RecyclerView startedTestsList = view.findViewById(R.id.started_tests_list);
+        startedTestsList.setLayoutManager(new LinearLayoutManager(getActivity()));
+        StartedTestsAdapter startedTestsAdapter = new StartedTestsAdapter(getActivity(), this, tests);
+        startedTestsList.setAdapter(startedTestsAdapter);
+
+        RecyclerView finishedTestsList = view.findViewById(R.id.finished_tests_list);
+        finishedTestsList.setLayoutManager(new LinearLayoutManager(getActivity()));
+        FinishedTestsAdapter finishedTestsAdapter = new FinishedTestsAdapter(getActivity(), this, tests);
+        finishedTestsList.setAdapter(finishedTestsAdapter);
+
         return view;
     }
 
     private Test exampleTestInit() {
         Test test1 = new Test();
-        test1.setTitle("Тест на знания Но-Шпа");
+        test1.setTitle("Но-Шпа");
         test1.setCoinsCount(5);
 
         ArrayList<String> variants1 = new ArrayList<>();
@@ -81,5 +88,15 @@ public class ListAvaibleTestFragment extends BaseFragment {
         test1.setQuestions(questions);
 
         return test1;
+    }
+
+    @Override
+    public void onFinishedTestClick(View view, int position) {
+
+    }
+
+    @Override
+    public void onStartedTestClick(View view, int position) {
+
     }
 }
