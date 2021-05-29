@@ -58,7 +58,7 @@
         app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintTop_toTopOf="@+id/line">
 
-        <TextView
+        <com.eapteka.eaptekatests.custom_view.CustomGradientTextView
             android:id="@+id/finished_tests"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -85,7 +85,7 @@
             android:layout_marginTop="10dp"
             android:background="@color/purple" />
 
-        <TextView
+        <com.eapteka.eaptekatests.custom_view.CustomGradientTextView
             android:id="@+id/current_tests"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
