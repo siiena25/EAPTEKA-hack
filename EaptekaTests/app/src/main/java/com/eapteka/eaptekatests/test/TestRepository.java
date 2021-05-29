@@ -25,7 +25,7 @@ public class TestRepository {
     private final Logger logger;
 
     private final MutableLiveData<Test> testData = new MutableLiveData<>();
-    private final MutableLiveData<ArrayList<Test>> allTests = new MutableLiveData<>();
+    public final MutableLiveData<ArrayList<Test>> allTests = new MutableLiveData<>();
 
     public TestRepository(Context context) {
         this.context = context;
@@ -39,9 +39,6 @@ public class TestRepository {
         return testData;
     }
 
-    public MutableLiveData<ArrayList<Test>> getAllTests() {
-        return allTests;
-    }
 
     public void updateTestInformation(final String username, final int numberOfTest) {
         userApi.getTest(username, numberOfTest).enqueue(new DatabaseCallback<Test>(LOG_TAG) {

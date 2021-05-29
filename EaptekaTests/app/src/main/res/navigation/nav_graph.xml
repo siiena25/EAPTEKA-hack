@@ -13,7 +13,9 @@
         <action
             android:id="@+id/action_accountFragment_to_listAvaibleTestFragment"
             app:destination="@id/listAvaibleTestFragment"
-            app:popUpTo="@id/accountFragment" />
+            app:popUpTo="@id/accountFragment"
+            app:enterAnim="@anim/fade_in"
+         />
     </fragment>
 
     <fragment
@@ -23,7 +25,10 @@
         tools:layout="@layout/fragment_test_result">
         <action
             android:id="@+id/action_testResultFragment_to_accountFragment2"
-            app:destination="@id/accountFragment" />
+            app:destination="@id/accountFragment"
+            app:popUpTo="@id/accountFragment"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/fade_in"/>
     </fragment>
 
     <fragment
@@ -32,7 +37,13 @@
         android:label="fragment_test">
         <action
             android:id="@+id/action_testFragment_to_testResultFragment"
-            app:destination="@id/testResultFragment" />
+            app:destination="@id/testResultFragment"
+            app:enterAnim="@anim/fade_in"/>
+        <action
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/listAvaibleTestFragment"
+            android:id="@+id/action_testFragment_to_listAvaibleTestFragment"
+            app:destination="@id/listAvaibleTestFragment" />
     </fragment>
 
     <fragment
@@ -43,7 +54,9 @@
         <action
             android:id="@+id/action_listAvaibleTestFragment_to_testFragment"
             app:destination="@id/infoFragment"
-            app:popUpTo="@id/listAvaibleTestFragment" />
+            app:popUpTo="@id/listAvaibleTestFragment"
+            app:enterAnim="@anim/fade_in"
+        />
     </fragment>
 
     <fragment
@@ -52,6 +65,7 @@
         android:label="fragment_info">
         <action
             android:id="@+id/action_infoFragment_to_testFragment"
-            app:destination="@id/testFragment" />
+            app:destination="@id/testFragment"
+            app:enterAnim="@anim/fade_in"/>
     </fragment>
 </navigation>
