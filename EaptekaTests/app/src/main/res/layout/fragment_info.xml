@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/tests_top_menu"
+        android:id="@+id/info_top_menu"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
@@ -27,19 +27,15 @@
             android:layout_weight="1"
             />
 
-        <TextView
-            android:id="@+id/bonuses"
+        <com.eapteka.eaptekatests.custom_view.CustomGradientTextView
+            android:id="@+id/start_test"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/round_form"
-            android:gravity="center"
-            android:textSize="16sp"
-            android:paddingLeft="10dp"
-            android:paddingTop="2dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="2dp"
-            android:text="@string/score"
-            android:textColor="@color/white" />
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:text="@string/start_test" />
+
 
     </LinearLayout>
 
@@ -48,61 +44,51 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/purple"
-        app:layout_constraintTop_toBottomOf="@+id/tests_top_menu" />
+        app:layout_constraintTop_toBottomOf="@+id/info_top_menu" />
 
     <LinearLayout
-        android:id="@+id/achievements"
+        android:id="@+id/info_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/view"
+        app:layout_constraintBottom_toTopOf="@+id/base"
         app:layout_constraintTop_toTopOf="@+id/line">
 
         <com.eapteka.eaptekatests.custom_view.CustomGradientTextView
-            android:id="@+id/achievements_text"
+            android:id="@+id/finished_tests"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:text="@string/achievements"
-            android:textColor="@color/purple"
+            android:text="@string/instruction"
             android:textSize="24sp" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/achievements_list"
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clipToPadding="false"
-            android:overScrollMode="never"
-            android:paddingStart="8dp"
-            android:paddingLeft="8dp"
-            android:paddingEnd="8dp"
-            android:paddingRight="8dp"
-            android:paddingBottom="8dp"
-            app:layout_anchor="@+id/linearLayout"
-            app:layout_anchorGravity="bottom|center"
-            tools:listitem="@layout/achievement" />
+            android:scrollbarStyle="outsideInset"
+            android:padding="10dp">
 
+            <TextView
+                android:id="@+id/info_text"
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:gravity="center"
+                android:text="@string/info_text"
+                android:textColor="@color/purple"
+                android:textSize="18sp" />
+
+        </ScrollView>
     </LinearLayout>
 
-    <View
+    <com.eapteka.eaptekatests.custom_view.CustomGradientTextView
+        android:id="@+id/base"
         android:layout_width="match_parent"
-        android:layout_height="110dp"
-        android:layout_gravity="bottom"
-        android:background="@drawable/ic_first_wave"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_gravity="bottom"
-        android:background="@drawable/ic_second_wave"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:text="@string/base"
+        android:textSize="10sp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
