@@ -39,7 +39,6 @@ public class QuestionSelectShelfTimeFragment extends TestBaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @SuppressLint("SetTextI18n")
