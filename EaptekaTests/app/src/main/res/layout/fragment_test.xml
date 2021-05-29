@@ -2,16 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".test.TestFragment">
-
 
         <ProgressBar
             android:id="@+id/pb_progress"
@@ -22,12 +21,22 @@
             android:progressTint="#03DAC5"
             tools:progress="10" />
 
+        <com.eapteka.eaptekatests.custom_view.CustomGradientTextView
+            android:id="@+id/base"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:padding="2dp"
+            android:text="@string/base"
+            android:textSize="10sp" />
+
         <TextView
             android:id="@+id/tv_progress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="14dp"
+            android:layout_marginTop="4dp"
             android:textColor="#7785E9"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -66,4 +75,5 @@
         android:textAllCaps="true"
         android:textColor="#B3FFFFFF"
         />
+
 </RelativeLayout>
