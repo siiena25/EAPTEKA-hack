@@ -35,8 +35,8 @@ public class ListAvaibleTestFragment extends BaseFragment {
 
     private Test exampleTestInit() {
         Test test1 = new Test();
-        test1.title = "Тест на знания Но-Шпа";
-        test1.coinsCount = 5;
+        test1.setTitle("Тест на знания Но-Шпа");
+        test1.setCoinsCount(5);
 
         ArrayList<String> variants1 = new ArrayList<>();
         variants1.add("Спазмы желудка и кишечника");
@@ -71,7 +71,7 @@ public class ListAvaibleTestFragment extends BaseFragment {
         questions.add(question2);
         questions.add(question3);
 
-        test1.questions = questions;
+        test1.setQuestions(questions);
 
         return test1;
     }
