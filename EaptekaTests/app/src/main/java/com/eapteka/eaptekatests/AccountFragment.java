@@ -3,12 +3,16 @@ package com.eapteka.eaptekatests;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.fragment.app.Fragment;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
 import uk.co.samuelwall.materialtaptargetprompt.extras.backgrounds.CirclePromptBackground;
@@ -16,10 +20,43 @@ import uk.co.samuelwall.materialtaptargetprompt.extras.focals.RectanglePromptFoc
 
 public class AccountFragment extends BaseFragment {
 
+    private AccountVM viewModel;
+    private ImageView moodView;
+
+    @Override
+    public void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        viewModel = new ViewModelProvider(getActivity()).get(AccountVM.class);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_account, container, false);
+
+        moodView = view.findViewById(R.id.mood_view);
+        viewModel.accountData.observe(getViewLifecycleOwner(), accountData -> {
+            String name;
+            if (accountData.happyLevel > 0.85)
+                name = "ic_mood_the_happiest";
+            else if (accountData.happyLevel > 0.72)
+                name = "ic_mood_very_happy";
+            else if (accountData.happyLevel > 0.58)
+                name = "ic_mood_satisfied";
+            else if (accountData.happyLevel > 0.43)
+                name = "ic_mood_neutral";
+            else if (accountData.happyLevel > 0.29)
+                name = "ic_mood_dissatisfied";
+            else if (accountData.happyLevel > 0.15)
+                name = "ic_mood_bad";
+            else
+                name = "ic_mood_dead";
+
+            int imageId = getActivity()
+                    .getResources()
+                    .getIdentifier(name, "drawable", getActivity().getPackageName());
+            moodView.setBackground(AppCompatResources.getDrawable(getActivity(), imageId));
+        });
         callButtonTestsTapTargetPrompt();
         return view;
     }
