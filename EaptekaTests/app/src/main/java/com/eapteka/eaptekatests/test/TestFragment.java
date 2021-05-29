@@ -33,8 +33,7 @@ public class TestFragment extends BaseFragment implements StepLoader {
 
     public TestFragment() {
     }
-
-
+    
     public static TestFragment newInstance(Test test) {
         TestFragment fragment = new TestFragment();
         fragment.test = test;
@@ -54,8 +53,8 @@ public class TestFragment extends BaseFragment implements StepLoader {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         test = new Test();
-        test.discount = 12;
-        test.coinsCount = 100;
+        test.setDiscount(12);
+        test.setCoinsCount(100);
 
         Question question = new Question();
         question.type = QuestionType.SelectVariant;
@@ -66,7 +65,7 @@ public class TestFragment extends BaseFragment implements StepLoader {
         question.variants.add("пятый вариант");
         question.variants.add("и шестой вариант");
         question.correctVariant = question.variants.get(2);
-        test.questions.add(question);
+        test.addNewQuestion(question);
 
         Question question1 = new Question();
         question1.type = QuestionType.SelectShelfTime;
@@ -77,7 +76,7 @@ public class TestFragment extends BaseFragment implements StepLoader {
         question1.variants.add("1");
         question1.variants.add("2");
         question1.correctVariant = question1.variants.get(2);
-        test.questions.add(question1);
+        test.addNewQuestion(question1);
 
 
         Question question2 = new Question();
@@ -89,11 +88,12 @@ public class TestFragment extends BaseFragment implements StepLoader {
         question2.variants.add("3");
         question2.variants.add("4");
         question2.correctVariant = question2.variants.get(2);
-        test.questions.add(question2);
+        test.addNewQuestion(question2);
 
         viewModel = new ViewModelProvider(this).get(TestVM.class);
-        if (test != null)
-            viewModel.test.setValue(test);
+        //TODO test
+//        if (test != null)
+//            viewModel.test.setValue(test);
     }
 
     @Override
@@ -104,7 +104,7 @@ public class TestFragment extends BaseFragment implements StepLoader {
         pbProgress = getView().findViewById(R.id.pb_progress);
 
         viewModel.test.observe(getViewLifecycleOwner(), test -> {
-            pbProgress.setMax(test.questions.size());
+            pbProgress.setMax(test.getCountOfQuestions());
             loadNextStep();
         });
         viewModel.currentProgressInt.observe(getViewLifecycleOwner(), progress -> pbProgress.setProgress(progress));
@@ -134,8 +134,8 @@ public class TestFragment extends BaseFragment implements StepLoader {
                 answersBool[i] = answers.get(i);
 
             bundle.putBooleanArray("is_answer_right", answersBool);
-            bundle.putString("coins_count", viewModel.test.getValue().coinsCount.toString());
-            bundle.putString("discount", viewModel.test.getValue().discount.toString());
+            bundle.putString("coins_count", viewModel.test.getValue().getCoinsCount().toString());
+            bundle.putString("discount", viewModel.test.getValue().getDiscount().toString());
 
             NavHostFragment.findNavController(this).navigate(R.id.action_testFragment_to_testResultFragment, bundle);
         }
