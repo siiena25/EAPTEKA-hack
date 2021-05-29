@@ -14,12 +14,10 @@ import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import nl.dionsegijn.konfetti.KonfettiView;
-import nl.dionsegijn.konfetti.emitters.StreamEmitter;
 import nl.dionsegijn.konfetti.models.Shape;
 import nl.dionsegijn.konfetti.models.Size;
 
@@ -62,17 +60,15 @@ public class TestResultFragment extends Fragment {
 
 
         tvResultPresent.setText(new StringBuilder()
-                .append("вы получили: ")
-                .append(coinsCount)
-                .append(" монет и ")
+                .append("ВАШ БОНУС - ")
                 .append(discount)
-                .append("% скидки на будущие продукты")
+                .append("% СКИДКА")
                 .toString());
 
-        if (rightAnswersCount < 5) {
-            int imageId = getActivity()
-                    .getResources()
-                    .getIdentifier("thumb_down_test", "drawable", getActivity().getPackageName());
+        if (rightAnswersCount < 4) {
+            int imageId = getActivity().
+                    getResources().
+                    getIdentifier("thumb_down_test", "drawable", getActivity().getPackageName());
             image.setBackground(AppCompatResources.getDrawable(getActivity(), imageId));
         }
 
@@ -81,7 +77,7 @@ public class TestResultFragment extends Fragment {
         answerImages[1] = view.findViewById(R.id.question_1_result);
         answerImages[2] = view.findViewById(R.id.question_2_result);
         answerImages[3] = view.findViewById(R.id.question_3_result);
-        answerImages[4] = view.findViewById(R.id.question_4_result);
+
         float delta = 0;
         for (int i = 0; i < isAnswerRight.length; i++) {
             if (!isAnswerRight[i]) {
@@ -93,7 +89,6 @@ public class TestResultFragment extends Fragment {
             else {
                 delta += 0.05;
             }
-
         }
         viewModel.updateHappyLevel(delta);
         showCongratulation(view);
@@ -103,16 +98,16 @@ public class TestResultFragment extends Fragment {
     public void showCongratulation(View view) {
         final KonfettiView konfettiView = view.findViewById(R.id.view_confetti);
         konfettiView.build()
-                .addColors(getActivity().getResources().getColor(R.color.teal_700),
-                        getActivity().getResources().getColor(R.color.teal_200),
-                        getActivity().getResources().getColor(R.color.purple_500))
+                .addColors(getActivity().getResources().getColor(R.color.gradient_start_color),
+                        getActivity().getResources().getColor(R.color.gradient_center_color),
+                        getActivity().getResources().getColor(R.color.gradient_end_color))
                 .setDirection(0.0, 359.0)
                 .setSpeed(1f, 5f)
                 .setFadeOutEnabled(true)
                 .setTimeToLive(2000L)
                 .addShapes(Shape.Square.INSTANCE, Shape.Circle.INSTANCE)
                 .addSizes(new Size(12, 5f))
-                .setPosition(0, (float) konfettiView.getWidth(), 0f, 0f)
-                .streamFor(400, 10000L);
+                .setPosition(0, (float)konfettiView.getWidth(), 0f, 0f)
+                .streamFor(200, 1000L);
     }
 }

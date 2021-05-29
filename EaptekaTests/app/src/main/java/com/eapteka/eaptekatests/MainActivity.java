@@ -1,12 +1,17 @@
 package com.eapteka.eaptekatests;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentManager;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.eapteka.eaptekatests.database.Logger;
 import com.eapteka.eaptekatests.database.Pill;
@@ -19,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
     private Logger logger;
 
     private PillViewModel pillViewModel;
-
     ArrayList<Pill> pills;
     Pill pill;
 
@@ -46,11 +50,12 @@ public class MainActivity extends AppCompatActivity {
                 logger.log(pill.getSubstance());
             }
         };
-//        pillViewModel.updateAllPills();
-//        pillViewModel.getAllPills().observe(this, observer);
-
 
         pillViewModel.updatePill("Arbidol");
         pillViewModel.getPill().observe(this, obs);
+    }
+
+    public void onClickButtonTests(View view) {
+        System.out.println("Clicked");
     }
 }

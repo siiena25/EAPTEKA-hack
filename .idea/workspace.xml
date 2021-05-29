@@ -32,16 +32,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c23cb8a5-d8ea-4494-bb63-9974af46d6eb" name="Default Changelist" comment="..">
+      <change afterPath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/test/TestRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EaptekaTests/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/EaptekaTests/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/database/DatabaseApiRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/database/DatabaseApiRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/database/Pill.java" beforeDir="false" afterPath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/database/Pill.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/database/PillRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/database/PillRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/database/Pills.java" beforeDir="false" afterPath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/database/Pills.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/database/UserApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/database/UserApi.java" afterDir="false" />
-    <list default="true" id="4fedc223-a373-46ab-8cef-d6d7331543a0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/EaptekaTests/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/test/TestFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/test/TestFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/test/TestVM.java" beforeDir="false" afterPath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/test/TestVM.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/test_models/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/test_models/Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +83,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="database" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -266,17 +262,14 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="100" y="100" width="1080" height="600" key="ShowDiffWithBranchDialog/0.0.1280.800@0.0.1280.800" timestamp="1622230349003" />
-    <state x="240" y="137" key="Vcs.Push.Dialog.v2" timestamp="1622280468164">
+    <state x="240" y="137" key="Vcs.Push.Dialog.v2" timestamp="1622299954126">
       <screen x="0" y="0" width="1280" height="800" />
-    <state x="93" y="93" width="1095" height="495" key="AVDManager/0.0.1280.680@0.0.1280.680" timestamp="1622226150889" />
-    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1622282742960">
-      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1622282742960" />
-    <state x="316" y="45" key="NewModule_or_Project.wizard" timestamp="1622234460175">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state x="240" y="137" key="Vcs.Push.Dialog.v2/0.0.1280.800@0.0.1280.800" timestamp="1622299954126" />
+    <state x="379" y="117" key="git4idea.branch.GitSmartOperationDialog" timestamp="1622300676091">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="240" y="137" key="Vcs.Push.Dialog.v2/0.0.1280.800@0.0.1280.800" timestamp="1622280468164" />
+    <state x="379" y="117" key="git4idea.branch.GitSmartOperationDialog/0.0.1280.800@0.0.1280.800" timestamp="1622300676091" />
     <state x="406" y="303" key="git4idea.ui.GitStashDialog" timestamp="1622279137950">
       <screen x="0" y="0" width="1280" height="800" />
     </state>

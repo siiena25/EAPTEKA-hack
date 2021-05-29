@@ -8,4 +8,12 @@ public class Question {
     public QuestionType type;
     public String correctVariant; //3
     public ArrayList<String> variants = new ArrayList<>(); //[1, 2, 3, 100]
+
+    public Question(String title, String desc, QuestionType type, String correctVariant, ArrayList<String> variants) {
+        this.title = title;
+        this.desc = desc;
+        this.type = type;
+        this.correctVariant = correctVariant;
+        this.variants = variants;
+    }
 }
