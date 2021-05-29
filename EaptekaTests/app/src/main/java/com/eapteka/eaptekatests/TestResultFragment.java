@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import nl.dionsegijn.konfetti.KonfettiView;
 import nl.dionsegijn.konfetti.emitters.StreamEmitter;
@@ -31,6 +32,10 @@ public class TestResultFragment extends Fragment {
     private boolean[] isAnswerRight = new boolean[5];
     private ImageView image;
     private View view;
+    private TextView tvResultPresent;
+    private String coinsCount;
+    private String discount;
+
     private AccountVM viewModel;
 
     public TestResultFragment() {
@@ -53,6 +58,17 @@ public class TestResultFragment extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_test_result, container, false);
         image = view.findViewById(R.id.test_result_image);
+        tvResultPresent = view.findViewById(R.id.your_additional_scores);
+
+
+        tvResultPresent.setText(new StringBuilder()
+                .append("вы получили: ")
+                .append(coinsCount)
+                .append(" монет и ")
+                .append(discount)
+                .append("% скидки на будущие продукты")
+                .toString());
+
         if (rightAnswersCount < 5) {
             int imageId = getActivity()
                     .getResources()
