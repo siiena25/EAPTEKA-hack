@@ -14,26 +14,26 @@ import com.eapteka.eaptekatests.test_models.Test;
 
 import java.util.ArrayList;
 
-public class StartedTestsAdapter extends RecyclerView.Adapter<StartedTestsAdapter.ViewHolder> {
+public class FinishedTestsAdapter extends RecyclerView.Adapter<FinishedTestsAdapter.ViewHolder> {
     private final LayoutInflater inflater;
     private final ArrayList<Test> tests;
-    private final OnStartedTestListener OnStartedTestListener;
+    private final OnFinishedTestListener onFinishedTestListener;
 
-    public StartedTestsAdapter(Context context, OnStartedTestListener onStartedTestListener, ArrayList<Test> tests) {
+    public FinishedTestsAdapter(Context context, OnFinishedTestListener onFinishedTestListener, ArrayList<Test> tests) {
         this.inflater = LayoutInflater.from(context);
         this.tests = tests;
-        this.OnStartedTestListener = onStartedTestListener;
+        this.onFinishedTestListener = onFinishedTestListener;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.started_test, parent, false);
-        return new StartedTestsAdapter.ViewHolder(view, OnStartedTestListener);
+    public FinishedTestsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = inflater.inflate(R.layout.finished_test, parent, false);
+        return new FinishedTestsAdapter.ViewHolder(view, onFinishedTestListener);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull FinishedTestsAdapter.ViewHolder holder, int position) {
         Test test = tests.get(position);
         holder.testTitle.setText(test.getTitle());
     }
@@ -49,22 +49,23 @@ public class StartedTestsAdapter extends RecyclerView.Adapter<StartedTestsAdapte
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         final TextView testTitle;
-        OnStartedTestListener onStartedTestListener;
+        OnFinishedTestListener onFinishedTestListener;
 
-        public ViewHolder(View view, OnStartedTestListener onStartedTestListener) {
+        public ViewHolder(View view, OnFinishedTestListener onFinishedTestListener) {
             super(view);
             testTitle = view.findViewById(R.id.med_name);
-            this.onStartedTestListener = onStartedTestListener;
+            this.onFinishedTestListener = onFinishedTestListener;
             view.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            onStartedTestListener.onStartedTestClick(v, getAdapterPosition());
+            onFinishedTestListener.onFinishedTestClick(v, getAdapterPosition());
         }
     }
 
-    public interface OnStartedTestListener {
-        void onStartedTestClick(View v, int adapterPosition);
+    public interface OnFinishedTestListener {
+        void onFinishedTestClick(View view, int position);
     }
 }
+

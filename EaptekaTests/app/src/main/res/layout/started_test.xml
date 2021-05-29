@@ -5,7 +5,8 @@
     app:cardUseCompatPadding="true"
     app:cardCornerRadius="5dp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,14 +35,14 @@
             android:layout_weight="2"
             />
 
-        <com.google.android.material.progressindicator.LinearProgressIndicator
-            android:id="@+id/started_progress_bar"
+        <ProgressBar
+            android:id="@+id/pb_progress"
             style="@android:style/Widget.ProgressBar.Horizontal"
             android:layout_width="190dp"
             android:layout_height="6dp"
             android:progressBackgroundTint="#666200EE"
             android:progressTint="#03DAC5"
-            tools:progress="25" />
+            tools:progress="33" />
 
     </LinearLayout>
 
