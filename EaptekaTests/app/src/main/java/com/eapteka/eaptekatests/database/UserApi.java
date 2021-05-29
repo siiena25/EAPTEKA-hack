@@ -24,4 +24,7 @@ public interface UserApi {
 
     @GET("/Users/{username}/Current tests/{number of test}.json")
     Call<Test> getTest(@Path("username") String username, @Path("number of test") String numberOfTest);
+
+    @GET("/Users/{username}/Current tests.json")
+    Call<ArrayList<Test>> getAllTests(@Path("username") String username);
 }

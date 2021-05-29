@@ -32,12 +32,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c23cb8a5-d8ea-4494-bb63-9974af46d6eb" name="Default Changelist" comment="..">
-      <change afterPath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/test/TestRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/TestResultFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/TestResultFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/database/UserApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/database/UserApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/test/TestFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/test/TestFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/test/TestVM.java" beforeDir="false" afterPath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/test/TestVM.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/test_models/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/test_models/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/test/TestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/test/TestRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/test_models/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/test_models/Question.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +82,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="tests" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -270,9 +269,10 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="379" y="117" key="git4idea.branch.GitSmartOperationDialog/0.0.1280.800@0.0.1280.800" timestamp="1622300676091" />
-    <state x="406" y="303" key="git4idea.ui.GitStashDialog" timestamp="1622279137950">
-      <screen x="0" y="0" width="1280" height="800" />
+    <state x="406" y="291" key="git4idea.ui.GitStashDialog" timestamp="1622316109805">
+      <screen x="0" y="25" width="1280" height="703" />
     </state>
     <state x="406" y="303" key="git4idea.ui.GitStashDialog/0.0.1280.800@0.0.1280.800" timestamp="1622279137950" />
+    <state x="406" y="291" key="git4idea.ui.GitStashDialog/0.25.1280.703@0.25.1280.703" timestamp="1622316109805" />
   </component>
 </project>
