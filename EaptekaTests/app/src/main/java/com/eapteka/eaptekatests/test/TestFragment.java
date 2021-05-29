@@ -59,7 +59,7 @@ public class TestFragment extends BaseFragment implements StepLoader {
         Question question = new Question();
         question.type = QuestionType.SelectVariant;
         question.title = "Показания";
-        question.desc = "asdasdaads";
+        question.desc = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
         question.variants.add("первый вариант");
         question.variants.add("второй вариант");
         question.variants.add("пятый вариант");
@@ -69,8 +69,8 @@ public class TestFragment extends BaseFragment implements StepLoader {
 
         Question question1 = new Question();
         question1.type = QuestionType.SelectShelfTime;
-        question1.title = "Показания";
-        question1.desc = "asdasdaads";
+        question1.title = "Срок годности";
+        question1.desc = "Сколько месяцев?";
         question1.variants.add("4");
         question1.variants.add("3");
         question1.variants.add("1");
