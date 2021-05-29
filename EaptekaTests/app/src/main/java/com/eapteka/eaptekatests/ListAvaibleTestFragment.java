@@ -3,6 +3,7 @@ package com.eapteka.eaptekatests;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import com.eapteka.eaptekatests.test_models.Test;
 import java.util.ArrayList;
 
 public class ListAvaibleTestFragment extends BaseFragment {
+    private View bReturn;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,11 @@ public class ListAvaibleTestFragment extends BaseFragment {
         RecyclerView finishedTestsList = view.findViewById(R.id.finished_tests_list);
         RecyclerView startedTestsList = view.findViewById(R.id.started_tests_list);
         Test exampleTest = exampleTestInit();
+
+        bReturn  = view.findViewById(R.id.return_to_profile);
+        bReturn.setOnClickListener(v -> {
+            NavHostFragment.findNavController(this).popBackStack();
+        });
         return view;
     }
 

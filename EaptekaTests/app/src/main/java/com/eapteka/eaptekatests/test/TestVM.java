@@ -24,7 +24,7 @@ public class TestVM extends AndroidViewModel {
     private static final String LOG_TAG = "TestViewModel";
     private final Logger logger;
 
-    LiveData<Test> test;
+    public MutableLiveData<Test> test;
     MutableLiveData<Integer> currentQuestionPos = new MutableLiveData<>(0);
     MutableLiveData<String> currentProgressString = new MutableLiveData<>();
     MutableLiveData<Integer> currentProgressInt = new MutableLiveData<>();
@@ -88,4 +88,5 @@ public class TestVM extends AndroidViewModel {
 
         return count;
     }
+
 }
