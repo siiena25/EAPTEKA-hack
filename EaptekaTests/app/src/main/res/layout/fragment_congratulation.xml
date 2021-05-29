@@ -7,26 +7,16 @@
     tools:context=".CongratulationFragment">
 
     <FrameLayout
+        android:id="@+id/confetti_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/grey"
         android:alpha="0.8"/>
 
-    <com.jetradarmobile.snowfall.SnowfallView
+    <nl.dionsegijn.konfetti.KonfettiView
+        android:id="@+id/view_confetti"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:snowflakeAlphaMax="255"
-        app:snowflakeAlphaMin="150"
-        app:snowflakeAngleMax="5"
-        app:snowflakeImage="@drawable/pill"
-        app:snowflakeSizeMax="248dp"
-        app:snowflakeSizeMin="64dp"
-        app:snowflakeSpeedMax="12"
-        app:snowflakeSpeedMin="4"
-        app:snowflakesAlreadyFalling="false"
-        app:snowflakesFadingEnabled="true"
-        app:snowflakesNum="50"
-        />
+        android:layout_height="match_parent" />
 
     <TextView
         android:id="@+id/congratulation_text_1"
