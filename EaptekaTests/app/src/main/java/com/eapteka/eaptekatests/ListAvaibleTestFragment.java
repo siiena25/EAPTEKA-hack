@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 public class ListAvaibleTestFragment extends BaseFragment implements
         StartedTestsAdapter.OnStartedTestListener,
         FinishedTestsAdapter.OnFinishedTestListener {
+    private View bReturn;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,11 @@ public class ListAvaibleTestFragment extends BaseFragment implements
         finishedTestsList.setLayoutManager(new LinearLayoutManager(getActivity()));
         FinishedTestsAdapter finishedTestsAdapter = new FinishedTestsAdapter(getActivity(), this, tests);
         finishedTestsList.setAdapter(finishedTestsAdapter);
+
+        bReturn  = view.findViewById(R.id.return_to_profile);
+        bReturn.setOnClickListener(v -> {
+            NavHostFragment.findNavController(this).popBackStack();
+        });
 
         return view;
     }
