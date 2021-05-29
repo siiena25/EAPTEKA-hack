@@ -32,6 +32,8 @@ public class TestResultFragment extends Fragment {
     private static final String IS_RIGHT_ANSWERS = "is_answer_right";
     private static final String MOOD_LEVEL = "moodLevel";
     private int rightAnswersCount = 0;
+    private int countOfQuestions = 3;
+    private int maximumDiscount = 5;
     private boolean[] isAnswerRight = new boolean[5];
     private ImageView image;
     private View view;
@@ -66,7 +68,7 @@ public class TestResultFragment extends Fragment {
 
         tvResultPresent.setText(new StringBuilder()
                 .append("ВАШ БОНУС - ")
-                .append(discount)
+                .append(Math.round(rightAnswersCount * maximumDiscount / countOfQuestions))
                 .append("% СКИДКА")
                 .toString());
 
