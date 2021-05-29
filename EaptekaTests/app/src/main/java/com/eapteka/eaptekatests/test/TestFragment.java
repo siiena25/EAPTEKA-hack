@@ -33,7 +33,7 @@ public class TestFragment extends BaseFragment implements StepLoader {
 
     public TestFragment() {
     }
-    
+
     public static TestFragment newInstance(Test test) {
         TestFragment fragment = new TestFragment();
         fragment.test = test;
@@ -93,9 +93,8 @@ public class TestFragment extends BaseFragment implements StepLoader {
         test.addNewQuestion(question2);
 
         viewModel = new ViewModelProvider(this).get(TestVM.class);
-        //TODO test
-//        if (test != null)
-//            viewModel.test.setValue(test);
+        if (test != null)
+            viewModel.test.setValue(test);
     }
 
     @Override
@@ -127,12 +126,12 @@ public class TestFragment extends BaseFragment implements StepLoader {
                     .replace(R.id.container_questions, fragment, null)
                     .addToBackStack(null)
                     .commit();
-        else{
+        else {
             Bundle bundle = new Bundle();
             bundle.putInt("right_answers_count", viewModel.getRightAnswerCount());
             ArrayList<Boolean> answers = viewModel.answers.getValue();
             boolean[] answersBool = new boolean[answers.size()];
-            for(int i = 0; i < answers.size(); i++)
+            for (int i = 0; i < answers.size(); i++)
                 answersBool[i] = answers.get(i);
 
             bundle.putBooleanArray("is_answer_right", answersBool);

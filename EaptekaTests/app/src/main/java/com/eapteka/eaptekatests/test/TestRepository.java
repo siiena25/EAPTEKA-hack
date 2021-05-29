@@ -32,7 +32,7 @@ public class TestRepository {
         userApi = DatabaseApiRepository.from(context).getUserApi();
     }
 
-    public LiveData<Test> getTestData() {
+    public MutableLiveData<Test> getTestData() {
         return testData;
     }
 
