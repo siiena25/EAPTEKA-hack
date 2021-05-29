@@ -20,11 +20,11 @@ import com.eapteka.eaptekatests.test_models.Question;
 import com.eapteka.eaptekatests.test_models.QuestionType;
 import com.eapteka.eaptekatests.test_models.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class TestFragment extends BaseFragment implements StepLoader {
-    private ViewGroup containerQuestionsFragment;
     private Test test;
     private TestVM viewModel;
     private TextView tvProgress;
@@ -46,7 +46,6 @@ public class TestFragment extends BaseFragment implements StepLoader {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_test, container, false);
-        containerQuestionsFragment = view.findViewById(R.id.container_questions);
         bBackToMenu = view.findViewById(R.id.b_back_to_menu);
         return view;
     }
@@ -55,6 +54,8 @@ public class TestFragment extends BaseFragment implements StepLoader {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         test = new Test();
+        test.discount = 12;
+        test.coinsCount = 100;
 
         Question question = new Question();
         question.type = QuestionType.SelectVariant;
@@ -126,8 +127,16 @@ public class TestFragment extends BaseFragment implements StepLoader {
                     .commit();
         else{
             Bundle bundle = new Bundle();
-            bundle.putInt("right_answers_count", 2);
-            bundle.putBooleanArray("is_answer_right", new boolean[]{true, false, true, false, false});
+            bundle.putInt("right_answers_count", viewModel.getRightAnswerCount());
+            ArrayList<Boolean> answers = viewModel.answers.getValue();
+            boolean[] answersBool = new boolean[answers.size()];
+            for(int i = 0; i < answers.size(); i++)
+                answersBool[i] = answers.get(i);
+
+            bundle.putBooleanArray("is_answer_right", answersBool);
+            bundle.putString("coins_count", viewModel.test.getValue().coinsCount.toString());
+            bundle.putString("discount", viewModel.test.getValue().discount.toString());
+
             NavHostFragment.findNavController(this).navigate(R.id.action_testFragment_to_testResultFragment, bundle);
         }
     }

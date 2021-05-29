@@ -70,8 +70,8 @@ public class QuestionSelectShelfTimeFragment extends TestBaseFragment {
                         .scaleY(1.1f)
                         .setDuration(1000);
             }
+            parentViewModel.addAnswer(isSelectedCurrent);
             showNextButton();
-
         });
 
         bPlus.setOnClickListener(v -> {

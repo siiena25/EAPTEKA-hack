@@ -14,6 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 import nl.dionsegijn.konfetti.KonfettiView;
 import nl.dionsegijn.konfetti.emitters.StreamEmitter;
@@ -25,9 +29,12 @@ public class TestResultFragment extends Fragment {
     private static final String RIGHT_ANSWERS_COUNT = "right_answers_count";
     private static final String IS_RIGHT_ANSWERS = "is_answer_right";
     private int rightAnswersCount = 0;
-    private boolean[] isAnswerRight = new boolean[5];
+    private ArrayList<Boolean> isAnswerRight = new ArrayList<>();
     private ImageView image;
     private View view;
+    private TextView tvResultPresent;
+    private String coinsCount;
+    private String discount;
 
     public TestResultFragment() {
         // Required empty public constructor
@@ -38,7 +45,10 @@ public class TestResultFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             rightAnswersCount = getArguments().getInt(RIGHT_ANSWERS_COUNT);
-            isAnswerRight = getArguments().getBooleanArray(IS_RIGHT_ANSWERS);
+            discount = getArguments().getString("discount");
+            coinsCount = getArguments().getString("coins_count");
+            for (Boolean bool : getArguments().getBooleanArray(IS_RIGHT_ANSWERS))
+                isAnswerRight.add(bool);
         }
     }
 
@@ -48,6 +58,18 @@ public class TestResultFragment extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_test_result, container, false);
         image = view.findViewById(R.id.test_result_image);
+        tvResultPresent = view.findViewById(R.id.your_additional_scores);
+
+
+        tvResultPresent.setText(new StringBuilder()
+                .append("вы получили: ")
+                .append(coinsCount)
+                .append(" монет и ")
+                .append(discount)
+                .append("% скидки на будущие продукты")
+                .toString());
+
+
         if (rightAnswersCount < 5) {
             int imageId = getActivity().
                     getResources().
@@ -62,8 +84,8 @@ public class TestResultFragment extends Fragment {
         answerImages[2] = view.findViewById(R.id.question_2_result);
         answerImages[3] = view.findViewById(R.id.question_3_result);
         answerImages[4] = view.findViewById(R.id.question_4_result);
-        for (int i = 0; i < 5; i++) {
-            if (!isAnswerRight[i]){
+        for (int i = 0; i < isAnswerRight.size(); i++) {
+            if (!isAnswerRight.get(i)) {
                 int imageId = getActivity().
                         getResources().
                         getIdentifier("ic_wrong_answer", "drawable", getActivity().getPackageName());
@@ -87,7 +109,7 @@ public class TestResultFragment extends Fragment {
                 .setTimeToLive(2000L)
                 .addShapes(Shape.Square.INSTANCE, Shape.Circle.INSTANCE)
                 .addSizes(new Size(12, 5f))
-                .setPosition(0, (float)konfettiView.getWidth(), 0f, 0f)
+                .setPosition(0, (float) konfettiView.getWidth(), 0f, 0f)
                 .streamFor(400, 10000L);
     }
 }
