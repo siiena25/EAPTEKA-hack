@@ -37,6 +37,7 @@ public class AccountFragment extends BaseFragment {
                 navController.navigate(R.id.action_accountFragment_to_listAvaibleTestFragment);
             }
         });
+
         return view;
     }
 

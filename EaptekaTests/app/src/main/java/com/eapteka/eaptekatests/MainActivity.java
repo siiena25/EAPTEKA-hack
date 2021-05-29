@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_account);
+        setContentView(R.layout.activity_main);
 
         logger = new Logger(LOG_TAG, true);
         pillViewModel = new ViewModelProvider(this).get(PillViewModel.class);
@@ -53,5 +53,9 @@ public class MainActivity extends AppCompatActivity {
 
         pillViewModel.updatePill("Arbidol");
         pillViewModel.getPill().observe(this, obs);
+    }
+
+    public void onClickButtonTests(View view) {
+        System.out.println("Clicked");
     }
 }
