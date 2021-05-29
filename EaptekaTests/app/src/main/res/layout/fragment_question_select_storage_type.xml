@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/ic_window"
+            />
+
+        <com.eapteka.eaptekatests.custom_view.CustomGradientTextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            tools:text="ПОКАЗАНИЯ"
+            android:textAllCaps="true"
+            android:layout_marginTop="4dp"/>
+
+
+        <TextView
+            android:id="@+id/tv_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textSize="16sp"
+            android:textColor="@color/desc_color"
+            />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            android:layout_marginTop="20dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:paddingVertical="20dp"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:layout_weight="1"
+                android:id="@+id/b_super_cold"
+                android:layout_marginHorizontal="@dimen/margin_storage_type_button"
+                >
+                <ImageButton
+                    style="@style/ImageViewStorageType"
+                    android:src="@drawable/ic_cold"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/TextViewStorageType"
+                    android:text="от -5\n до -18°C"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="@dimen/margin_storage_type_button"
+                android:id="@+id/b_cold"
+                >
+                <ImageButton
+                    style="@style/ImageViewStorageType"
+                    android:src="@drawable/ic_refrigerator"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/TextViewStorageType"
+                    android:text="от 2\n до 8°C"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="@dimen/margin_storage_type_button"
+                android:id="@+id/b_heat"
+                >
+                <ImageButton
+                    style="@style/ImageViewStorageType"
+                    android:src="@drawable/ic_no_sun"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/TextViewStorageType"
+                    android:text="от 8\n до 15°C"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:layout_weight="1"
+                android:id="@+id/b_super_heat"
+                android:layout_marginHorizontal="@dimen/margin_storage_type_button"
+                >
+                <ImageButton
+                    style="@style/ImageViewStorageType"
+                    android:src="@drawable/ic_temperature"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/TextViewStorageType"
+                    android:text="от 15\n до 30°C"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+        <com.eapteka.eaptekatests.custom_view.CustomGradientTextView
+            android:id="@+id/b_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:text="@string/next" />
+
+    </LinearLayout>
+</ScrollView>

@@ -45,12 +45,13 @@ public class CustomViewCrossOut extends CustomGradientTextView {
 
         canvas.drawLine(startX, 0, currentX, currentY, paint);
         int k = canvas.getHeight()/canvas.getWidth();
-        if (currentY <= getHeight() && currentX >= 0 && isAnimStart) { // set end points
+        if (currentY <= getHeight() && currentX >= 0 && isAnimStart) {
             currentY +=speed*k;
             currentX -= speed;
+
         }
 
-        postInvalidateDelayed(10); // set time here
+        postInvalidateDelayed(10);
 
     }
 

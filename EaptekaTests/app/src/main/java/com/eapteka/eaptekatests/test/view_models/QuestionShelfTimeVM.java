@@ -1,4 +1,4 @@
-package com.eapteka.eaptekatests.test;
+package com.eapteka.eaptekatests.test.view_models;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -6,15 +6,15 @@ import androidx.lifecycle.ViewModel;
 import com.eapteka.eaptekatests.test_models.Question;
 
 public class QuestionShelfTimeVM extends ViewModel {
-    MutableLiveData<Integer> selectedTime = new MutableLiveData<>(1);
+    public MutableLiveData<Integer> selectedTime = new MutableLiveData<>(1);
     public MutableLiveData<Boolean> isSelectedCurrent = new MutableLiveData<>();
 
 
-    void increase() {
+    public void increase() {
         selectedTime.setValue(selectedTime.getValue() + 1);
     }
 
-    void decrease() {
+    public void decrease() {
         int value = selectedTime.getValue();
         if (value == 1) return;
         selectedTime.setValue(value - 1);

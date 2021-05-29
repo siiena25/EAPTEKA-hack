@@ -1,38 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    tools:context=".test.TestFragment">
+    android:layout_height="match_parent">
 
-
-    <ProgressBar
-        android:id="@+id/pb_progress"
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        style="@android:style/Widget.ProgressBar.Horizontal"
-        tools:progress="10"
-        android:progressTint="#03DAC5"
-        android:progressBackgroundTint="#6200EE"
-        />
-
-    <TextView
-        android:id="@+id/tv_progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="14dp"
-        android:textColor="#7785E9"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        tools:text="1/4"/>
-
-    <FrameLayout
-        android:layout_marginTop="14dp"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/container_questions"/>
+        android:orientation="vertical"
+        tools:context=".test.TestFragment">
 
-</LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/pb_progress"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:progressBackgroundTint="#666200EE"
+            android:progressTint="#03DAC5"
+            tools:progress="10" />
+
+        <TextView
+            android:id="@+id/tv_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="14dp"
+            android:textColor="#7785E9"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="1/4" />
+
+        <FrameLayout
+            android:id="@+id/container_questions"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="14dp" />
+
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_wave_back"
+        android:layout_alignParentBottom="true"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_wave_front"
+        android:layout_alignParentBottom="true"/>
+
+    <TextView
+        android:id="@+id/b_back_to_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="16dp"
+        android:text="Вернуться в меню"
+        android:textAllCaps="true"
+        android:textColor="#B3FFFFFF"
+        />
+</RelativeLayout>

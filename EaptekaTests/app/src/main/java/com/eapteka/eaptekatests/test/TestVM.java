@@ -3,6 +3,9 @@ package com.eapteka.eaptekatests.test;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.eapteka.eaptekatests.test.questions.QuestionSelectShelfTimeFragment;
+import com.eapteka.eaptekatests.test.questions.QuestionSelectStorageType;
+import com.eapteka.eaptekatests.test.questions.QuestionSelectVariantFragment;
 import com.eapteka.eaptekatests.test_models.Question;
 import com.eapteka.eaptekatests.test_models.Test;
 
@@ -13,7 +16,7 @@ public class TestVM extends ViewModel {
     MutableLiveData<String> currentProgressString = new MutableLiveData<>();
     MutableLiveData<Integer> currentProgressInt = new MutableLiveData<>();
 
-    public TestBaseFragment getTextQuestionFragment() {
+    public TestBaseFragment getTextQuestionFragment(StepLoader stepLoader) {
         try {
             int currentStep = currentQuestionPos.getValue();
             if (currentStep == test.getValue().questions.size()) return null;
@@ -28,9 +31,13 @@ public class TestVM extends ViewModel {
                 case SelectShelfTime:
                     fragment = QuestionSelectShelfTimeFragment.newInstance();
                     break;
+                case SelectStorageType:
+                    fragment = QuestionSelectStorageType.newInstance();
+                    break;
             }
 
             fragment.setQuestion(question);
+            fragment.setStepLoader(stepLoader);
 
             int nextStep = currentStep + 1;
             currentProgressString.setValue(nextStep + "/" + test.getValue().questions.size());

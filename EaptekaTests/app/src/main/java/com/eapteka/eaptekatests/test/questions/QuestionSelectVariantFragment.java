@@ -1,21 +1,17 @@
-package com.eapteka.eaptekatests.test;
+package com.eapteka.eaptekatests.test.questions;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.CycleInterpolator;
 import android.widget.GridLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.Observer;
 
 import com.eapteka.eaptekatests.R;
-import com.eapteka.eaptekatests.test_models.Question;
-
-import org.w3c.dom.Text;
+import com.eapteka.eaptekatests.test.TestBaseFragment;
 
 public class QuestionSelectVariantFragment extends TestBaseFragment {
     private GridLayout gridLayout;

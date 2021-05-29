@@ -10,11 +10,13 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.eapteka.eaptekatests.BaseFragment;
 import com.eapteka.eaptekatests.R;
+import com.eapteka.eaptekatests.test.view_models.QuestionVM;
 import com.eapteka.eaptekatests.test_models.Question;
 
 public class TestBaseFragment extends BaseFragment {
     protected QuestionVM viewModel;
     private Question question;
+    private StepLoader stepLoader;
     protected TextView tvTitle;
     protected TextView tvDesc;
     protected View bNext;
@@ -25,8 +27,10 @@ public class TestBaseFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
 
         viewModel = new ViewModelProvider(this).get(QuestionVM.class);
-        if(question != null)
+        if (question != null)
             viewModel.question.setValue(question);
+        if(stepLoader != null)
+            viewModel.stepLoader.setValue(stepLoader);
     }
 
     @Override
@@ -37,10 +41,19 @@ public class TestBaseFragment extends BaseFragment {
         tvDesc = view.findViewById(R.id.tv_desc);
         bNext = view.findViewById(R.id.b_next);
         bNext.setVisibility(View.GONE);
+
+        bNext.setClickable(false);
+        bNext.setOnClickListener(v -> {
+            viewModel.loadNextStep();
+        });
     }
 
     public void setQuestion(Question question) {
         this.question = question;
+    }
+
+    public void setStepLoader(StepLoader stepLoader) {
+        this.stepLoader = stepLoader;
     }
 
     protected void fillBy(Question question) {
@@ -51,6 +64,7 @@ public class TestBaseFragment extends BaseFragment {
     protected void showNextButton() {
         bNext.setAlpha(0f);
         bNext.setVisibility(View.VISIBLE);
+        bNext.setClickable(true);
         bNext.animate().alpha(1f).setDuration(1000);
     }
 }

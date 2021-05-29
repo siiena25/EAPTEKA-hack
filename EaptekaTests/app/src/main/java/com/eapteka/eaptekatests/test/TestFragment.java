@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavGraphNavigator;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.eapteka.eaptekatests.BaseFragment;
 import com.eapteka.eaptekatests.R;
@@ -27,6 +29,7 @@ public class TestFragment extends BaseFragment implements StepLoader {
     private TestVM viewModel;
     private TextView tvProgress;
     private ProgressBar pbProgress;
+    private View bBackToMenu;
 
     public TestFragment() {
     }
@@ -44,6 +47,7 @@ public class TestFragment extends BaseFragment implements StepLoader {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_test, container, false);
         containerQuestionsFragment = view.findViewById(R.id.container_questions);
+        bBackToMenu = view.findViewById(R.id.b_back_to_menu);
         return view;
     }
 
@@ -51,7 +55,6 @@ public class TestFragment extends BaseFragment implements StepLoader {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         test = new Test();
-        /*
 
         Question question = new Question();
         question.type = QuestionType.SelectVariant;
@@ -64,23 +67,28 @@ public class TestFragment extends BaseFragment implements StepLoader {
         question.correctVariant = question.variants.get(2);
         test.questions.add(question);
 
-         */
-        try {
-            Question question1 = new Question();
-            question1.type = QuestionType.SelectShelfTime;
-            question1.title = "Показания";
-            question1.desc = "asdasdaads";
-            question1.variants.add("4");
-            question1.variants.add("3");
-            question1.variants.add("1");
-            question1.variants.add("2");
-            question1.correctVariant = question1.variants.get(2);
-            test.questions.add(question1);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Question question1 = new Question();
+        question1.type = QuestionType.SelectShelfTime;
+        question1.title = "Показания";
+        question1.desc = "asdasdaads";
+        question1.variants.add("4");
+        question1.variants.add("3");
+        question1.variants.add("1");
+        question1.variants.add("2");
+        question1.correctVariant = question1.variants.get(2);
+        test.questions.add(question1);
 
 
+        Question question2 = new Question();
+        question2.type = QuestionType.SelectStorageType;
+        question2.title = "хранение";
+        question2.desc = "Выберите способ хранения";
+        question2.variants.add("1");
+        question2.variants.add("2");
+        question2.variants.add("3");
+        question2.variants.add("4");
+        question2.correctVariant = question2.variants.get(2);
+        test.questions.add(question2);
 
         viewModel = new ViewModelProvider(this).get(TestVM.class);
         if (test != null)
@@ -100,11 +108,15 @@ public class TestFragment extends BaseFragment implements StepLoader {
         });
         viewModel.currentProgressInt.observe(getViewLifecycleOwner(), progress -> pbProgress.setProgress(progress));
         viewModel.currentProgressString.observe(getViewLifecycleOwner(), progress -> tvProgress.setText(progress));
+
+        bBackToMenu.setOnClickListener(v -> {
+            NavHostFragment.findNavController(this).popBackStack();
+        });
     }
 
     @Override
     public void loadNextStep() {
-        TestBaseFragment fragment = viewModel.getTextQuestionFragment();
+        TestBaseFragment fragment = viewModel.getTextQuestionFragment(this);
 
         if (fragment != null)
             getChildFragmentManager()
@@ -112,6 +124,8 @@ public class TestFragment extends BaseFragment implements StepLoader {
                     .replace(R.id.container_questions, fragment, null)
                     .addToBackStack(null)
                     .commit();
+        else
+            NavHostFragment.findNavController(this).navigate(R.id.action_testFragment_to_finalTestFragment);
     }
 
     @Override
