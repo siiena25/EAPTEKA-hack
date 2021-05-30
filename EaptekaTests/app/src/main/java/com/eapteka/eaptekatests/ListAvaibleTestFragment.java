@@ -34,7 +34,7 @@ public class ListAvaibleTestFragment extends BaseFragment implements
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = viewModel = new ViewModelProvider(getActivity()).get(AccountVM.class);
+        viewModel = new ViewModelProvider(getActivity()).get(AccountVM.class);
     }
 
     @Override
