@@ -16,6 +16,11 @@
             app:popUpTo="@id/accountFragment"
             app:enterAnim="@anim/fade_in"
          />
+        <action
+            android:id="@+id/action_accountFragment_to_achievementsFragment"
+            app:destination="@id/achievementsFragment"
+            app:popUpTo="@id/accountFragment"
+            />
     </fragment>
 
     <fragment
@@ -68,4 +73,9 @@
             app:destination="@id/testFragment"
             app:enterAnim="@anim/fade_in"/>
     </fragment>
+    <fragment
+        android:id="@+id/achievementsFragment"
+        android:name="com.eapteka.eaptekatests.AchievementsFragment"
+        android:label="AchievementsFragment"
+        tools:layout="@layout/fragment_achievements"/>
 </navigation>

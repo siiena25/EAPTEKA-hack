@@ -104,6 +104,17 @@
         android:onClick="onClickButtonTests"
         app:layout_constraintTop_toBottomOf="@+id/mood_layout" />
 
+    <ImageButton
+        android:id="@+id/button_achievement"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/round_form"
+        android:src="@drawable/ic_achievment"
+        app:layout_constraintTop_toBottomOf="@+id/user_name_and_score_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginVertical="14dp"
+        />
+
     <LinearLayout
         android:id="@+id/list"
         android:layout_width="match_parent"

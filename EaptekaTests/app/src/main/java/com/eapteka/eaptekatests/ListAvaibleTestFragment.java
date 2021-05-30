@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,8 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.eapteka.eaptekatests.adapters.FinishedTestsAdapter;
 import com.eapteka.eaptekatests.adapters.StartedTestsAdapter;
 import com.eapteka.eaptekatests.test.TestRepository;
-import com.eapteka.eaptekatests.test_models.Question;
-import com.eapteka.eaptekatests.test_models.QuestionType;
 import com.eapteka.eaptekatests.test_models.Test;
 
 import java.util.ArrayList;

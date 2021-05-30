@@ -39,6 +39,7 @@ public class AccountFragment extends BaseFragment {
     private AccountVM viewModel;
     private ImageView moodView;
     private TextView scoreView;
+    private View bAchievement;
 
     boolean isFirstEnterInProfileFragment = true;
 
@@ -57,8 +58,7 @@ public class AccountFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_account, container, false);
-
-        logger.log("onCreateView");
+        bAchievement = view.findViewById(R.id.button_achievement);
 
         moodView = view.findViewById(R.id.mood_view);
         scoreView = view.findViewById(R.id.score_view);
@@ -99,6 +99,10 @@ public class AccountFragment extends BaseFragment {
         buttonTests.setOnClickListener(v ->
                 navController.navigate(R.id.action_accountFragment_to_listAvaibleTestFragment));
 
+        bAchievement.setOnClickListener(v -> {
+            navController.navigate(R.id.action_accountFragment_to_achievementsFragment);
+        });
+
         return view;
     }
 
@@ -116,7 +120,6 @@ public class AccountFragment extends BaseFragment {
     }
 
     private void callButtonTestsTapTargetPrompt() {
-        logger.log("callButtonTestsTapTargetPrompt");
         new MaterialTapTargetPrompt.Builder(getActivity())
                 .setTarget(R.id.button_tests)
                 .setPrimaryText("Тесты от ЕАПТЕКИ")
