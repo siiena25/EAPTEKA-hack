@@ -8,11 +8,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.eapteka.eaptekatests.R;
 import com.eapteka.eaptekatests.test.TestBaseFragment;
-import com.eapteka.eaptekatests.test.view_models.QuestionStorageTypeVM;
 
 import java.util.ArrayList;
 
@@ -23,7 +21,6 @@ public class QuestionSelectStorageType extends TestBaseFragment {
     private View bSuperHeat;
     private View bApply;
     private ArrayList<View> buttons = new ArrayList<>();
-    private QuestionStorageTypeVM viewModelLocal;
     private boolean[] choosed = {false, false, false, false};
 
     public static QuestionSelectStorageType newInstance() {
@@ -46,7 +43,7 @@ public class QuestionSelectStorageType extends TestBaseFragment {
         viewModel.question.observe(getViewLifecycleOwner(), question -> {
             fillBy(question);
         });
-        
+
         bSuperCold = view.findViewById(R.id.b_cold);
         bCold = view.findViewById(R.id.b_super_cold);
         bHeat = view.findViewById(R.id.b_heat);
@@ -56,24 +53,19 @@ public class QuestionSelectStorageType extends TestBaseFragment {
         buttons.add(bCold);
         buttons.add(bHeat);
         buttons.add(bSuperHeat);
-        viewModelLocal = new ViewModelProvider(this).get(QuestionStorageTypeVM.class);
 
         for (View button : buttons) {
             button.setOnClickListener(v -> {
                 Integer pos = buttons.indexOf(button);
                 int durationTime = 1000;
                 float scaleUp = 1.1f;
-                if (choosed[pos]){
+                if (choosed[pos]) {
                     button.animate().scaleY(1).scaleX(1).setDuration(durationTime);
                     choosed[pos] = false;
-                }
-                else{
+                } else {
                     button.animate().scaleY(scaleUp).scaleX(scaleUp).setDuration(durationTime);
                     choosed[pos] = true;
                 }
-                Integer currentPos = viewModelLocal.getCurrentPos(viewModel.question.getValue());
-                Boolean isAnswerCurrent = viewModelLocal.isAnswerCurrent(viewModel.question.getValue(), pos);
-                //animate(currentPos, isAnswerCurrent, pos);
             });
 
             viewModel.isSelectedCurrent.observe(getViewLifecycleOwner(), isSelectedCurrent -> {
@@ -83,7 +75,7 @@ public class QuestionSelectStorageType extends TestBaseFragment {
             bNext.setVisibility(View.VISIBLE);
             bNext.setClickable(true);
             bNext.setOnClickListener(v -> {
-                ((TextView)bNext).setText(R.string.next);
+                ((TextView) bNext).setText(R.string.next);
                 bNext.setOnClickListener(s -> {
                     viewModel.loadNextStep();
                 });
@@ -104,7 +96,7 @@ public class QuestionSelectStorageType extends TestBaseFragment {
         float scaleDown = 0.6f;
         float alphaDown = 0.1f;
 
-        String[] correctVariants = correctVariant.split(" ");
+        String[] correctVariants = correctVariant.split(",");
         ArrayList<String> corrects = new ArrayList<>();
         for (int i = 0; i < correctVariants.length; i++) {
             corrects.add(correctVariants[i]);
@@ -121,9 +113,9 @@ public class QuestionSelectStorageType extends TestBaseFragment {
                 else
                     view.animate().scaleY(scaleUp).scaleX(scaleUp).setDuration(durationTime);
             } else {
-                if(choosed[i] && !corrects.contains(curVariant))
+                if (choosed[i] && !corrects.contains(curVariant))
                     view.animate().scaleY(scaleDown).scaleX(scaleDown).setDuration(durationTime);
-                else if(corrects.contains(curVariant))
+                else if (corrects.contains(curVariant))
                     view.animate().scaleY(scaleUp).scaleX(scaleUp).setDuration(durationTime);
                 else
                     view.animate().alpha(alphaDown).setDuration(durationTime);

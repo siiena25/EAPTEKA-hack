@@ -19,6 +19,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.eapteka.eaptekatests.database.Logger;
+
+import org.jetbrains.annotations.NotNull;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -31,6 +36,9 @@ public class AccountFragment extends BaseFragment {
 
     private AccountVM viewModel;
     private ImageView moodView;
+    private TextView scoreView;
+
+    Logger logger = new Logger("AccountFragment", true);
 
     boolean isFirstEnterInProfileFragment = true;
 
@@ -52,7 +60,10 @@ public class AccountFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_account, container, false);
 
+        logger.log("onCreateView");
+
         moodView = view.findViewById(R.id.mood_view);
+        scoreView = view.findViewById(R.id.score_view);
         viewModel.accountData.observe(getViewLifecycleOwner(), accountData -> {
             String name;
             if (accountData.happyLevel > 0.85)
@@ -74,17 +85,21 @@ public class AccountFragment extends BaseFragment {
                     .getResources()
                     .getIdentifier(name, "drawable", getActivity().getPackageName());
             moodView.setBackground(AppCompatResources.getDrawable(getActivity(), imageId));
+
+            if (Integer.parseInt(scoreView.getText().toString().split(" ")[0]) < accountData.coins)
+            if (accountData.coins % 10 == 1)
+                scoreView.setText(accountData.coins + " балл");
+            else if (accountData.coins % 10 != 0 && accountData.coins % 10 > 5)
+                scoreView.setText(accountData.coins + " баллов");
+            else
+                scoreView.setText(accountData.coins + " балла");
         });
 
         navController = NavHostFragment.findNavController(this);
 
         AppCompatButton buttonTests = view.findViewById(R.id.button_tests);
-        buttonTests.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navController.navigate(R.id.action_accountFragment_to_listAvaibleTestFragment);
-            }
-        });
+        buttonTests.setOnClickListener(v ->
+                navController.navigate(R.id.action_accountFragment_to_listAvaibleTestFragment));
 
         return view;
     }
@@ -100,6 +115,7 @@ public class AccountFragment extends BaseFragment {
     }
 
     private void callButtonTestsTapTargetPrompt() {
+        logger.log("callButtonTestsTapTargetPrompt");
         new MaterialTapTargetPrompt.Builder(getActivity())
                 .setTarget(R.id.button_tests)
                 .setPrimaryText("Тесты от ЕАПТЕКИ")
