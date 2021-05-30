@@ -1,5 +1,6 @@
 package com.eapteka.eaptekatests;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,21 +40,17 @@ public class AccountFragment extends BaseFragment {
     private ImageView moodView;
     private TextView scoreView;
 
-    Logger logger = new Logger("AccountFragment", true);
-
     boolean isFirstEnterInProfileFragment = true;
 
+    private SharedPreferences sharedPreferences;
+  
     @Override
     public void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         viewModel = new ViewModelProvider(getActivity()).get(AccountVM.class);
 
-        if (savedInstanceState != null) {
-            isFirstEnterInProfileFragment = savedInstanceState.getBoolean("isFirstEnterInProfileFragment", false);
-        }
-        else {
-            isFirstEnterInProfileFragment = true;
-        }
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        isFirstEnterInProfileFragment = sharedPreferences.getBoolean("isFirstEnterInProfileFragment", true);
     }
 
     @Override
@@ -111,6 +109,9 @@ public class AccountFragment extends BaseFragment {
         if (isFirstEnterInProfileFragment) {
             callButtonTestsTapTargetPrompt();
             isFirstEnterInProfileFragment = false;
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("isFirstEnterInProfileFragment", isFirstEnterInProfileFragment);
+            editor.apply();
         }
     }
 
@@ -167,11 +168,5 @@ public class AccountFragment extends BaseFragment {
                 .setPromptFocal(new RectanglePromptFocal().setCornerRadius(150, 150))
                 .setBackgroundColour(getResources().getColor(R.color.transparent_end_color))
                 .show();
-    }
-
-    @Override
-    public void onSaveInstanceState(@NonNull @NotNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putBoolean("isFirstEnterInProfileFragment", false);
     }
 }
