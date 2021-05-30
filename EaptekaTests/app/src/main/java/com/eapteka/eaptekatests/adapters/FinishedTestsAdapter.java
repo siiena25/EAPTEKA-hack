@@ -29,13 +29,16 @@ public class FinishedTestsAdapter extends RecyclerView.Adapter<FinishedTestsAdap
     @Override
     public FinishedTestsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.finished_test, parent, false);
-        return new FinishedTestsAdapter.ViewHolder(view, onFinishedTestListener);
+        return new FinishedTestsAdapter.ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull FinishedTestsAdapter.ViewHolder holder, int position) {
         Test test = tests.get(position);
         holder.testTitle.setText(test.getTitle());
+        holder.itemView.setOnClickListener(v -> {
+            onFinishedTestListener.onFinishedTestClick(holder.itemView, position);
+        });
     }
 
     @Override
@@ -47,21 +50,14 @@ public class FinishedTestsAdapter extends RecyclerView.Adapter<FinishedTestsAdap
         return tests.get(position);
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         final TextView testTitle;
-        OnFinishedTestListener onFinishedTestListener;
 
-        public ViewHolder(View view, OnFinishedTestListener onFinishedTestListener) {
+        public ViewHolder(View view) {
             super(view);
             testTitle = view.findViewById(R.id.med_name);
-            this.onFinishedTestListener = onFinishedTestListener;
-            view.setOnClickListener(this);
         }
 
-        @Override
-        public void onClick(View v) {
-            onFinishedTestListener.onFinishedTestClick(v, getAdapterPosition());
-        }
     }
 
     public interface OnFinishedTestListener {

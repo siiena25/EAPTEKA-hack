@@ -24,23 +24,16 @@ public class TestVM extends AndroidViewModel {
     private static final String LOG_TAG = "TestViewModel";
     private final Logger logger;
 
-    public MutableLiveData<Test> test;
-    public MutableLiveData<ArrayList<Test>> allTests;
+    public MutableLiveData<Test> test = new MutableLiveData<>();
     MutableLiveData<Integer> currentQuestionPos = new MutableLiveData<>(0);
     MutableLiveData<String> currentProgressString = new MutableLiveData<>();
     MutableLiveData<Integer> currentProgressInt = new MutableLiveData<>();
-
-    TestRepository testRepository;
 
     MutableLiveData<ArrayList<Boolean>> answers = new MutableLiveData<>(new ArrayList<>());
 
     public TestVM(@NonNull Application application) {
         super(application);
         logger = new Logger(LOG_TAG, true);
-
-        testRepository = new TestRepository(getApplication());
-        test = testRepository.getTestData();
-        allTests = testRepository.getAllTests();
     }
 
     public TestBaseFragment getTextQuestionFragment(StepLoader stepLoader) {
@@ -89,17 +82,5 @@ public class TestVM extends AndroidViewModel {
             if (answer) count++;
 
         return count;
-    }
-
-    public LiveData<ArrayList<Test>> getAllTests() {
-        return allTests;
-    }
-
-    public void updateAllTests(final String username) {
-        testRepository.updateAllTests(username);
-    }
-
-    public void updateTestInformation(final String username, final int numberOfTest) {
-        testRepository.updateTestInformation(username, numberOfTest);
     }
 }

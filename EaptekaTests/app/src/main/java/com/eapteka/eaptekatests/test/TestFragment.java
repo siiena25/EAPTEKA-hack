@@ -34,12 +34,6 @@ public class TestFragment extends BaseFragment implements StepLoader {
     public TestFragment() {
     }
 
-    public static TestFragment newInstance(Test test) {
-        TestFragment fragment = new TestFragment();
-        fragment.test = test;
-        return fragment;
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,8 +46,11 @@ public class TestFragment extends BaseFragment implements StepLoader {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         viewModel = new ViewModelProvider(this).get(TestVM.class);
-        viewModel.updateTestInformation("Alexey", 0);
+        viewModel.test.setValue(baseViewModel.selectedTest.getValue());
+
+        //viewModel.updateTestInformation("Alexey", 0);
     }
 
     @Override
@@ -71,7 +68,7 @@ public class TestFragment extends BaseFragment implements StepLoader {
         viewModel.currentProgressString.observe(getViewLifecycleOwner(), progress -> tvProgress.setText(progress));
 
         bBackToMenu.setOnClickListener(v -> {
-            NavHostFragment.findNavController(this).popBackStack();
+            NavHostFragment.findNavController(this).navigate(R.id.action_testFragment_to_listAvaibleTestFragment);
         });
     }
 

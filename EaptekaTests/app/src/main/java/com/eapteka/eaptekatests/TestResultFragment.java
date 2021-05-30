@@ -1,8 +1,5 @@
 package com.eapteka.eaptekatests;
 
-import android.app.Dialog;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -34,12 +31,13 @@ public class TestResultFragment extends Fragment {
     private int rightAnswersCount = 0;
     private int countOfQuestions = 3;
     private int maximumDiscount = 5;
-    private boolean[] isAnswerRight = new boolean[5];
+    private boolean[] arrAnswerCurrentOrMistake;
     private ImageView image;
     private View view;
     private TextView tvResultPresent;
-    private String coinsCount;
-    private String discount;
+    private ViewGroup containerAnswerView;
+    //private String coinsCount;
+//    private String discount;
 
     private AccountVM viewModel;
 
@@ -52,7 +50,7 @@ public class TestResultFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             rightAnswersCount = getArguments().getInt(RIGHT_ANSWERS_COUNT);
-            isAnswerRight = getArguments().getBooleanArray(IS_RIGHT_ANSWERS);
+            arrAnswerCurrentOrMistake = getArguments().getBooleanArray(IS_RIGHT_ANSWERS);
         }
         viewModel = new ViewModelProvider(getActivity()).get(AccountVM.class);
     }
@@ -64,6 +62,7 @@ public class TestResultFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_test_result, container, false);
         image = view.findViewById(R.id.test_result_image);
         tvResultPresent = view.findViewById(R.id.your_additional_scores);
+        containerAnswerView = view.findViewById(R.id.questions_result_layout);
 
 
         tvResultPresent.setText(new StringBuilder()
@@ -72,30 +71,25 @@ public class TestResultFragment extends Fragment {
                 .append("% СКИДКА")
                 .toString());
 
-        if (rightAnswersCount < 4) {
-            int imageId = getActivity().
-                    getResources().
-                    getIdentifier("thumb_down_test", "drawable", getActivity().getPackageName());
-            image.setBackground(AppCompatResources.getDrawable(getActivity(), imageId));
+        if (rightAnswersCount < 4)
+            image.setBackgroundResource(R.drawable.thumb_down_test);
+
+
+        for(Boolean isCurrentAnswer: arrAnswerCurrentOrMistake) {
+            int resId;
+            if(isCurrentAnswer)
+                resId = R.layout.item_current_answer;
+            else
+                resId = R.layout.item_mistake_answer;
+            View view = LayoutInflater.from(getContext()).inflate(resId, null, false);
+            containerAnswerView.addView(view);
         }
 
-        ImageView[] answerImages = new ImageView[5];
-        answerImages[0] = view.findViewById(R.id.question_0_result);
-        answerImages[1] = view.findViewById(R.id.question_1_result);
-        answerImages[2] = view.findViewById(R.id.question_2_result);
-        answerImages[3] = view.findViewById(R.id.question_3_result);
 
         float delta = 0;
-        for (int i = 0; i < isAnswerRight.length; i++) {
-            if (!isAnswerRight[i]) {
-                int imageId = getActivity().
-                        getResources().
-                        getIdentifier("ic_wrong_answer", "drawable", getActivity().getPackageName());
-                answerImages[i].setBackground(AppCompatResources.getDrawable(getActivity(), imageId));
-            }
-            else {
+        for (int i = 0; i < arrAnswerCurrentOrMistake.length; i++) {
+            if (arrAnswerCurrentOrMistake[i])
                 delta += 0.05;
-            }
         }
         viewModel.updateHappyLevel(delta);
         showCongratulation(view);

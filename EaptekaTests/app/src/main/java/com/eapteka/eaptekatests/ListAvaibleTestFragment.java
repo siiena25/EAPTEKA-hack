@@ -1,16 +1,20 @@
 package com.eapteka.eaptekatests;
 
+import android.animation.Animator;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.eapteka.eaptekatests.adapters.FinishedTestsAdapter;
 import com.eapteka.eaptekatests.adapters.StartedTestsAdapter;
+import com.eapteka.eaptekatests.test.TestRepository;
 import com.eapteka.eaptekatests.test_models.Question;
 import com.eapteka.eaptekatests.test_models.QuestionType;
 import com.eapteka.eaptekatests.test_models.Test;
@@ -22,6 +26,9 @@ public class ListAvaibleTestFragment extends BaseFragment implements
         FinishedTestsAdapter.OnFinishedTestListener {
     private View bReturn;
 
+    private final ArrayList<Test> listStartedTests = new ArrayList<>();
+    private final ArrayList<Test> listFinishedTest = new ArrayList<>();
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,21 +39,28 @@ public class ListAvaibleTestFragment extends BaseFragment implements
                              Bundle savedInstanceState) {
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_list_avaible_test, container, false);
 
-        Test exampleTest = exampleTestInit();
-        ArrayList<Test> tests = new ArrayList<>();
-        tests.add(exampleTest);
+        TestRepository repository = new TestRepository(getContext());
+        repository.allTests.observe(getViewLifecycleOwner(), tests -> {
+            listFinishedTest.clear();
+            listStartedTests.clear();
 
-        RecyclerView startedTestsList = view.findViewById(R.id.started_tests_list);
-        startedTestsList.setLayoutManager(new LinearLayoutManager(getActivity()));
-        StartedTestsAdapter startedTestsAdapter = new StartedTestsAdapter(getActivity(), this, tests);
-        startedTestsList.setAdapter(startedTestsAdapter);
+            listStartedTests.addAll(tests);
+            listFinishedTest.addAll(tests);
 
-        RecyclerView finishedTestsList = view.findViewById(R.id.finished_tests_list);
-        finishedTestsList.setLayoutManager(new LinearLayoutManager(getActivity()));
-        FinishedTestsAdapter finishedTestsAdapter = new FinishedTestsAdapter(getActivity(), this, tests);
-        finishedTestsList.setAdapter(finishedTestsAdapter);
+            RecyclerView startedTestsList = view.findViewById(R.id.started_tests_list);
+            startedTestsList.setLayoutManager(new LinearLayoutManager(getActivity()));
+            StartedTestsAdapter startedTestsAdapter = new StartedTestsAdapter(getActivity(), this, listStartedTests);
+            startedTestsList.setAdapter(startedTestsAdapter);
 
-        bReturn  = view.findViewById(R.id.return_to_profile);
+            RecyclerView finishedTestsList = view.findViewById(R.id.finished_tests_list);
+            finishedTestsList.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+            FinishedTestsAdapter finishedTestsAdapter = new FinishedTestsAdapter(getActivity(), this, listFinishedTest);
+            finishedTestsList.setAdapter(finishedTestsAdapter);
+        });
+        repository.updateAllTests("Alexey");
+
+
+        bReturn = view.findViewById(R.id.return_to_profile);
         bReturn.setOnClickListener(v -> {
             NavHostFragment.findNavController(this).popBackStack();
         });
@@ -54,56 +68,61 @@ public class ListAvaibleTestFragment extends BaseFragment implements
         return view;
     }
 
-    private Test exampleTestInit() {
-        Test test1 = new Test();
-        test1.setTitle("Но-Шпа");
-        test1.setCoinsCount(5);
 
-        ArrayList<String> variants1 = new ArrayList<>();
-        variants1.add("Спазмы желудка и кишечника");
-        variants1.add("Ангина");
-        variants1.add("Аллергия");
-        variants1.add("Грипп");
-        ArrayList<String> variants2 = new ArrayList<>();
-        variants2.add("1");
-        variants2.add("3");
-        variants2.add("5");
-        ArrayList<String> variants3 = new ArrayList<>();
-        ArrayList<Question> questions = new ArrayList<>();
-        Question question1 = new Question(
-                "ПОКАЗАНИЯ",
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-                QuestionType.SelectVariant,
-                "1",
-                variants1);
-        Question question2 = new Question(
-                "СРОК ХРАНЕНИЯ",
-                "Сколько лет?",
-                QuestionType.SelectStorageType,
-                "5",
-                variants2);
-        Question question3 = new Question(
-                "ХРАНЕНИЕ",
-                "Выберите особенности хранения",
-                QuestionType.SelectShelfTime,
-                "4",
-                variants3);
-        questions.add(question1);
-        questions.add(question2);
-        questions.add(question3);
-
-        test1.setQuestions(questions);
-
-        return test1;
-    }
-
+    private final int animDuration = 400;
+    private final float scale = 1.1f;
     @Override
     public void onFinishedTestClick(View view, int position) {
+        Fragment fragment = this;
+        view.animate().scaleX(scale).scaleY(scale).setDuration(animDuration).setListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
 
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                baseViewModel.selectedTest.setValue(listFinishedTest.get(position));
+                NavHostFragment.findNavController(fragment).navigate(R.id.action_listAvaibleTestFragment_to_testFragment);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
     }
 
     @Override
     public void onStartedTestClick(View view, int position) {
+        Fragment fragment = this;
+        view.animate().scaleY(scale).setDuration(animDuration).setListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
 
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                baseViewModel.selectedTest.setValue(listStartedTests.get(position));
+                NavHostFragment.findNavController(fragment).navigate(R.id.action_listAvaibleTestFragment_to_testFragment);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
     }
+
 }

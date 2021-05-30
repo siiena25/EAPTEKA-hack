@@ -2,4 +2,5 @@
 <resources>
     <dimen name="arrow_size">60dp</dimen>
     <dimen name="margin_storage_type_button">3dp</dimen>
+    <dimen name="margin_answer_view">12dp</dimen>
 </resources>
