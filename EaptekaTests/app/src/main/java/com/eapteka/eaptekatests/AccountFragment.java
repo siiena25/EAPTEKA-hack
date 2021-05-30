@@ -76,7 +76,12 @@ public class AccountFragment extends BaseFragment {
             moodView.setBackground(AppCompatResources.getDrawable(getActivity(), imageId));
 
             if (Integer.parseInt(scoreView.getText().toString().split(" ")[0]) < accountData.coins)
+            if (accountData.coins % 10 == 1)
+                scoreView.setText(accountData.coins + " балл");
+            else if (accountData.coins % 10 != 0 && accountData.coins % 10 > 5)
                 scoreView.setText(accountData.coins + " баллов");
+            else
+                scoreView.setText(accountData.coins + " балла");
         });
 
         callButtonTestsTapTargetPrompt();

@@ -22,7 +22,7 @@ public class QuestionVM extends ViewModel {
     public void apply(Question question, boolean[] choosed) {
         boolean ans = true;
         ArrayList<String> corrects = new ArrayList<>();
-        String arr[] = question.correctVariant.split(" ");
+        String arr[] = question.correctVariant.split(",");
         for (String a : arr)
             corrects.add(a);
 
