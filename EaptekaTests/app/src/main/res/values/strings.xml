@@ -30,6 +30,14 @@
     <string name="base">Имеются противопоказания. Необходимо проконсультироваться со специалистом.</string>
     <string name="you_got_scores">Начислено n баллов</string>
 
+    <string name="info_name">Название препарата:</string>
+    <string name="info_form">Форма выпуска:</string>
+    <string name="info_life">Срок годности:</string>
+    <string name="info_substance">Активное вещество:</string>
+    <string name="info_testimony">Показания:</string>
+    <string name="info_apply">Способ применения:</string>
+    <string name="info_storage">Способ хранения:</string>
+
     <string name="info_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
         sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
