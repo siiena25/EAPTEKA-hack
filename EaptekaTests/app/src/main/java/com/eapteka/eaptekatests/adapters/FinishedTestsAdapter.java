@@ -9,9 +9,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.eapteka.eaptekatests.R;
+import com.eapteka.eaptekatests.test.InfoVM;
 import com.eapteka.eaptekatests.test_models.Test;
 
 import java.util.ArrayList;
@@ -20,11 +23,13 @@ public class FinishedTestsAdapter extends RecyclerView.Adapter<FinishedTestsAdap
     private final LayoutInflater inflater;
     private final ArrayList<Test> tests;
     private final OnFinishedTestListener onFinishedTestListener;
+    private Context context;
 
     public FinishedTestsAdapter(Context context, OnFinishedTestListener onFinishedTestListener, ArrayList<Test> tests) {
         this.inflater = LayoutInflater.from(context);
         this.tests = tests;
         this.onFinishedTestListener = onFinishedTestListener;
+        this.context = context;
     }
 
     @NonNull
@@ -56,8 +61,10 @@ public class FinishedTestsAdapter extends RecyclerView.Adapter<FinishedTestsAdap
         }
         ((ImageView) view.findViewById(R.id.character_post_image)).setImageResource(picture);
 
+        InfoVM viewModel = new ViewModelProvider((ViewModelStoreOwner) context).get(InfoVM.class);
         holder.itemView.setOnClickListener(v -> {
             onFinishedTestListener.onFinishedTestClick(holder.itemView, position);
+            viewModel.name.setValue(test.getTitle());
         });
     }
 
