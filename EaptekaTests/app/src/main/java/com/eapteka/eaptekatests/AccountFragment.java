@@ -58,7 +58,6 @@ public class AccountFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_account, container, false);
 
-        logger.log("onCreateView");
 
         moodView = view.findViewById(R.id.mood_view);
         scoreView = view.findViewById(R.id.score_view);
@@ -116,7 +115,6 @@ public class AccountFragment extends BaseFragment {
     }
 
     private void callButtonTestsTapTargetPrompt() {
-        logger.log("callButtonTestsTapTargetPrompt");
         new MaterialTapTargetPrompt.Builder(getActivity())
                 .setTarget(R.id.button_tests)
                 .setPrimaryText("Тесты от ЕАПТЕКИ")
