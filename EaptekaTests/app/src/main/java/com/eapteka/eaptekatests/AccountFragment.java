@@ -58,6 +58,7 @@ public class AccountFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_account, container, false);
+
         bAchievement = view.findViewById(R.id.button_achievement);
 
         moodView = view.findViewById(R.id.mood_view);

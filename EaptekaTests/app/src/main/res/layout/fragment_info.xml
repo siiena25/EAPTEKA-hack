@@ -64,6 +64,7 @@
             android:textSize="24sp" />
 
         <ScrollView
+            android:id="@+id/scr_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scrollbarStyle="outsideInset"
@@ -73,7 +74,6 @@
                 android:id="@+id/info_text"
                 android:layout_width="match_parent"
                 android:layout_height="500dp"
-                android:gravity="center"
                 android:text="@string/info_text"
                 android:textColor="@color/purple"
                 android:textSize="18sp" />
