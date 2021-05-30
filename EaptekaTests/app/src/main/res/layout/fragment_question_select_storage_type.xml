@@ -141,7 +141,7 @@
             android:textSize="24sp"
             android:textStyle="bold"
             android:textAllCaps="true"
-            android:text="@string/next" />
+            android:text="готово" />
 
     </LinearLayout>
 </ScrollView>

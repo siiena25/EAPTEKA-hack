@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,6 +24,7 @@ public class QuestionSelectStorageType extends TestBaseFragment {
     private View bApply;
     private ArrayList<View> buttons = new ArrayList<>();
     private QuestionStorageTypeVM viewModelLocal;
+    private boolean[] choosed = {false, false, false, false};
 
     public static QuestionSelectStorageType newInstance() {
         QuestionSelectStorageType fragment = new QuestionSelectStorageType();
@@ -59,9 +61,33 @@ public class QuestionSelectStorageType extends TestBaseFragment {
         for (View button : buttons) {
             button.setOnClickListener(v -> {
                 Integer pos = buttons.indexOf(button);
+                int durationTime = 1000;
+                float scaleUp = 1.1f;
+                if (choosed[pos]){
+                    button.animate().scaleY(1).scaleX(1).setDuration(durationTime);
+                    choosed[pos] = false;
+                }
+                else{
+                    button.animate().scaleY(scaleUp).scaleX(scaleUp).setDuration(durationTime);
+                    choosed[pos] = true;
+                }
                 Integer currentPos = viewModelLocal.getCurrentPos(viewModel.question.getValue());
                 Boolean isAnswerCurrent = viewModelLocal.isAnswerCurrent(viewModel.question.getValue(), pos);
-                animate(currentPos, isAnswerCurrent, pos);
+                //animate(currentPos, isAnswerCurrent, pos);
+            });
+
+            viewModel.isSelectedCurrent.observe(getViewLifecycleOwner(), isSelectedCurrent -> {
+                animate(viewModel.question.getValue().correctVariant, isSelectedCurrent, choosed);
+            });
+
+            bNext.setVisibility(View.VISIBLE);
+            bNext.setClickable(true);
+            bNext.setOnClickListener(v -> {
+                ((TextView)bNext).setText(R.string.next);
+                bNext.setOnClickListener(s -> {
+                    viewModel.loadNextStep();
+                });
+                viewModel.apply(viewModel.question.getValue(), choosed);
             });
         }
     }
@@ -72,25 +98,32 @@ public class QuestionSelectStorageType extends TestBaseFragment {
 
     }
 
-    private void animate(int currentViewPos, Boolean isSelectedCurrent, int selectedViewPos) {
+    private void animate(String correctVariant, Boolean isSelectedCurrent, boolean[] choosed) {
         int durationTime = 1000;
         float scaleUp = 1.1f;
         float scaleDown = 0.6f;
         float alphaDown = 0.1f;
 
-        for (View view: buttons) {
-            Integer i = buttons.indexOf(view);
+        String[] correctVariants = correctVariant.split(" ");
+        ArrayList<String> corrects = new ArrayList<>();
+        for (int i = 0; i < correctVariants.length; i++) {
+            corrects.add(correctVariants[i]);
+        }
+
+        for (int i = 0; i < buttons.size(); i++) {
+            View view = buttons.get(i);
             view.setClickable(false);
 
+            String curVariant = viewModel.question.getValue().variants.get(i);
             if (isSelectedCurrent) {
-                if (i != currentViewPos)
+                if (!corrects.contains(curVariant))
                     view.animate().alpha(alphaDown).setDuration(durationTime);
                 else
                     view.animate().scaleY(scaleUp).scaleX(scaleUp).setDuration(durationTime);
             } else {
-                if(i == selectedViewPos)
+                if(choosed[i] && !corrects.contains(curVariant))
                     view.animate().scaleY(scaleDown).scaleX(scaleDown).setDuration(durationTime);
-                else if(i == currentViewPos)
+                else if(corrects.contains(curVariant))
                     view.animate().scaleY(scaleUp).scaleX(scaleUp).setDuration(durationTime);
                 else
                     view.animate().alpha(alphaDown).setDuration(durationTime);

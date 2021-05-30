@@ -13,9 +13,12 @@ import androidx.annotation.Nullable;
 import com.eapteka.eaptekatests.R;
 import com.eapteka.eaptekatests.test.TestBaseFragment;
 
+import java.util.ArrayList;
+
 public class QuestionSelectVariantFragment extends TestBaseFragment {
     private GridLayout gridLayout;
     private int currentViewPos;
+    private boolean[] choosed = {false, false, false, false};
 
     public static QuestionSelectVariantFragment newInstance() {
         QuestionSelectVariantFragment fragment = new QuestionSelectVariantFragment();
@@ -49,40 +52,71 @@ public class QuestionSelectVariantFragment extends TestBaseFragment {
                         .inflate(R.layout.item_question_variant, gridLayout, false);
                 variantView.setText(variant);
 
-                Boolean isCurrentAnswer = variant.equals(question.correctVariant);
+               /* Boolean isCurrentAnswer = variant.equals(question.correctVariant);*/
                 int viewPos = question.variants.indexOf(variant);
-                if (isCurrentAnswer)
-                    currentViewPos = viewPos;
+                /*if (isCurrentAnswer)
+                    currentViewPos = viewPos;*/
 
                 variantView.setOnClickListener(v -> {
-                    animate(currentViewPos, isCurrentAnswer, viewPos);
+                    //animate(currentViewPos, isCurrentAnswer, viewPos);
+                    int durationTime = 1000;
+                    float scaleUp = 1.1f;
+                    if (choosed[viewPos]){
+                        variantView.animate().scaleY(1).scaleX(1).setDuration(durationTime);
+                        choosed[viewPos] = false;
+                    }
+                    else{
+                        variantView.animate().scaleY(scaleUp).scaleX(scaleUp).setDuration(durationTime);
+                        choosed[viewPos] = true;
+                    }
                 });
 
                 gridLayout.addView(variantView);
             }
         });
+
+        viewModel.isSelectedCurrent.observe(getViewLifecycleOwner(), isSelectedCurrent -> {
+            animate(viewModel.question.getValue().correctVariant, isSelectedCurrent, choosed);
+        });
+
+        bNext.setVisibility(View.VISIBLE);
+        bNext.setClickable(true);
+        bNext.setOnClickListener(v -> {
+            ((TextView)bNext).setText(R.string.next);
+            bNext.setOnClickListener(s -> {
+                viewModel.loadNextStep();
+            });
+            viewModel.apply(viewModel.question.getValue(), choosed);
+        });
     }
 
 
-    private void animate(int currentViewPos, Boolean isSelectedCurrent, int selectedViewPos) {
+    private void animate(String correctVariant, Boolean isSelectedCurrent, boolean[] choosed) {
         int durationTime = 1000;
         float scaleUp = 1.1f;
         float scaleDown = 0.6f;
         float alphaDown = 0.1f;
 
+        String[] correctVariants = correctVariant.split(" ");
+        ArrayList<String> corrects = new ArrayList<>();
+        for (int i = 0; i < correctVariants.length; i++) {
+            corrects.add(correctVariants[i]);
+        }
+
         for (int i = 0; i < gridLayout.getChildCount(); i++) {
             View view = gridLayout.getChildAt(i);
             view.setClickable(false);
 
+            String curVariant = viewModel.question.getValue().variants.get(i);
             if (isSelectedCurrent) {
-                if (i != currentViewPos)
+                if (!corrects.contains(curVariant))
                     view.animate().alpha(alphaDown).setDuration(durationTime);
                 else
                     view.animate().scaleY(scaleUp).scaleX(scaleUp).setDuration(durationTime);
             } else {
-                if(i == selectedViewPos)
+                if(choosed[i] && !corrects.contains(curVariant))
                     view.animate().scaleY(scaleDown).scaleX(scaleDown).setDuration(durationTime);
-                else if(i == currentViewPos)
+                else if(corrects.contains(curVariant))
                     view.animate().scaleY(scaleUp).scaleX(scaleUp).setDuration(durationTime);
                 else
                     view.animate().alpha(alphaDown).setDuration(durationTime);
