@@ -1,5 +1,6 @@
 package com.eapteka.eaptekatests;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,10 +16,16 @@ import androidx.fragment.app.Fragment;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.eapteka.eaptekatests.database.Logger;
+
+import org.jetbrains.annotations.NotNull;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -31,20 +38,19 @@ public class AccountFragment extends BaseFragment {
 
     private AccountVM viewModel;
     private ImageView moodView;
+    private TextView scoreView;
 
     boolean isFirstEnterInProfileFragment = true;
+
+    private SharedPreferences sharedPreferences;
 
     @Override
     public void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         viewModel = new ViewModelProvider(getActivity()).get(AccountVM.class);
 
-        if (savedInstanceState != null) {
-            isFirstEnterInProfileFragment = savedInstanceState.getBoolean("isFirstEnterInProfileFragment", false);
-        }
-        else {
-            isFirstEnterInProfileFragment = true;
-        }
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        isFirstEnterInProfileFragment = sharedPreferences.getBoolean("isFirstEnterInProfileFragment", true);
     }
 
     @Override
@@ -53,6 +59,7 @@ public class AccountFragment extends BaseFragment {
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_account, container, false);
 
         moodView = view.findViewById(R.id.mood_view);
+        scoreView = view.findViewById(R.id.score_view);
         viewModel.accountData.observe(getViewLifecycleOwner(), accountData -> {
             String name;
             if (accountData.happyLevel > 0.85)
@@ -74,17 +81,21 @@ public class AccountFragment extends BaseFragment {
                     .getResources()
                     .getIdentifier(name, "drawable", getActivity().getPackageName());
             moodView.setBackground(AppCompatResources.getDrawable(getActivity(), imageId));
+
+            if (Integer.parseInt(scoreView.getText().toString().split(" ")[0]) < accountData.coins)
+            if (accountData.coins % 10 == 1)
+                scoreView.setText(accountData.coins + " балл");
+            else if (accountData.coins % 10 != 0 && accountData.coins % 10 > 5)
+                scoreView.setText(accountData.coins + " баллов");
+            else
+                scoreView.setText(accountData.coins + " балла");
         });
 
         navController = NavHostFragment.findNavController(this);
 
         AppCompatButton buttonTests = view.findViewById(R.id.button_tests);
-        buttonTests.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navController.navigate(R.id.action_accountFragment_to_listAvaibleTestFragment);
-            }
-        });
+        buttonTests.setOnClickListener(v ->
+                navController.navigate(R.id.action_accountFragment_to_listAvaibleTestFragment));
 
         return view;
     }
@@ -95,7 +106,9 @@ public class AccountFragment extends BaseFragment {
 
         if (isFirstEnterInProfileFragment) {
             callButtonTestsTapTargetPrompt();
-            isFirstEnterInProfileFragment = false;
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("isFirstEnterInProfileFragment", false);
+            editor.apply();
         }
     }
 

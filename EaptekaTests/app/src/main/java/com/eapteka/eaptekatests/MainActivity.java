@@ -20,9 +20,6 @@ import com.eapteka.eaptekatests.database.PillViewModel;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String LOG_TAG = "Main Activity";
-    private Logger logger;
-
     private PillViewModel pillViewModel;
     ArrayList<Pill> pills;
     Pill pill;
@@ -32,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        logger = new Logger(LOG_TAG, true);
         pillViewModel = new ViewModelProvider(this).get(PillViewModel.class);
 
         Observer<ArrayList<Pill>> observer = pills -> {
@@ -40,14 +36,12 @@ public class MainActivity extends AppCompatActivity {
                 this.pills = pills;
                 for(int i = 0; i < pills.size(); i++) {
                     Pill pill = pills.get(i);
-                    logger.log(pill.getName());
                 }
             }
         };
         Observer<Pill> obs = pill -> {
             if (pill != null) {
                 this.pill = pill;
-                logger.log(pill.getSubstance());
             }
         };
 
