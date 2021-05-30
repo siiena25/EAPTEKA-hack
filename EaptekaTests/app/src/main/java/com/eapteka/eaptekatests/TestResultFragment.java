@@ -92,6 +92,7 @@ public class TestResultFragment extends Fragment {
                 delta += 0.05;
         }
         viewModel.updateHappyLevel(delta);
+        viewModel.updateСoins(rightAnswersCount);
         showCongratulation(view);
         return view;
     }
