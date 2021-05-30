@@ -39,6 +39,7 @@ public class AccountFragment extends BaseFragment {
     private AccountVM viewModel;
     private ImageView moodView;
     private TextView scoreView;
+    private View bAchievement;
 
     boolean isFirstEnterInProfileFragment = true;
 
@@ -58,6 +59,7 @@ public class AccountFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_account, container, false);
 
+        bAchievement = view.findViewById(R.id.button_achievement);
 
         moodView = view.findViewById(R.id.mood_view);
         scoreView = view.findViewById(R.id.score_view);
@@ -89,7 +91,7 @@ public class AccountFragment extends BaseFragment {
             else if (accountData.coins % 10 != 0 && accountData.coins % 10 > 5)
                 scoreView.setText(accountData.coins + " баллов");
             else
-                scoreView.setText(accountData.coins + " балла");
+                scoreView.setText(accountData.coins + " баллов");
         });
 
         navController = NavHostFragment.findNavController(this);
@@ -97,6 +99,10 @@ public class AccountFragment extends BaseFragment {
         AppCompatButton buttonTests = view.findViewById(R.id.button_tests);
         buttonTests.setOnClickListener(v ->
                 navController.navigate(R.id.action_accountFragment_to_listAvaibleTestFragment));
+
+        bAchievement.setOnClickListener(v -> {
+            navController.navigate(R.id.action_accountFragment_to_achievementsFragment);
+        });
 
         return view;
     }
@@ -161,6 +167,27 @@ public class AccountFragment extends BaseFragment {
                 .setTarget(R.id.mood_view)
                 .setPrimaryText("Отражение успешного прохождения тестов")
                 .setSecondaryText("Если результаты пройденных Вами тестов будут отличные, то Ваш смайл будет всегда отлично себя чувствовать.")
+                .setAnimationInterpolator(new FastOutSlowInInterpolator())
+                .setPromptBackground(new CirclePromptBackground())
+                .setPromptFocal(new RectanglePromptFocal().setCornerRadius(150, 150))
+                .setBackgroundColour(getResources().getColor(R.color.transparent_end_color))
+                .setPromptStateChangeListener(new MaterialTapTargetPrompt.PromptStateChangeListener() {
+                    @Override
+                    public void onPromptStateChanged(@NonNull MaterialTapTargetPrompt prompt, int state) {
+                        if ((state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED) ||
+                                (state == MaterialTapTargetPrompt.STATE_NON_FOCAL_PRESSED)) {
+                            callAchieveTapTargetPrompt();
+                        }
+                    }
+                })
+                .show();
+    }
+
+    private void callAchieveTapTargetPrompt() {
+        new MaterialTapTargetPrompt.Builder(getActivity())
+                .setTarget(R.id.button_achievement)
+                .setPrimaryText("Достижения")
+                .setSecondaryText("Вы также можете получать награды за Ваши успехи в тестах.")
                 .setAnimationInterpolator(new FastOutSlowInInterpolator())
                 .setPromptBackground(new CirclePromptBackground())
                 .setPromptFocal(new RectanglePromptFocal().setCornerRadius(150, 150))

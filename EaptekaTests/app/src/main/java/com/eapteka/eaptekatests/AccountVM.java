@@ -4,11 +4,11 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class AccountVM extends ViewModel {
-    MutableLiveData<AccountData> accountData = new MutableLiveData<>();
+    MutableLiveData<AccountData> accountData = new MutableLiveData<>(new AccountData(0.8f, 60));
 
     public void updateHappyLevel(float delta) {
         if (accountData.getValue() == null){
-            accountData.setValue(new AccountData(0.8f + delta, 0));
+            accountData.setValue(new AccountData(0.8f + delta, 100));
         }
         else if (accountData.getValue().happyLevel + delta <= 1)
             accountData.setValue(new AccountData(accountData.getValue().happyLevel + delta,
