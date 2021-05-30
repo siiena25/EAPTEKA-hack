@@ -32,8 +32,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c23cb8a5-d8ea-4494-bb63-9974af46d6eb" name="Default Changelist" comment="..">
+      <change afterPath="$PROJECT_DIR$/EaptekaTests/app/src/main/res/drawable/arbidol.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EaptekaTests/app/src/main/res/drawable/mezim.JPG" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/test/view_models/QuestionShelfTimeVM.java" beforeDir="false" afterPath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/test/view_models/QuestionShelfTimeVM.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/adapters/FinishedTestsAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/EaptekaTests/app/src/main/java/com/eapteka/eaptekatests/adapters/FinishedTestsAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EaptekaTests/app/src/main/res/layout/finished_test.xml" beforeDir="false" afterPath="$PROJECT_DIR$/EaptekaTests/app/src/main/res/layout/finished_test.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

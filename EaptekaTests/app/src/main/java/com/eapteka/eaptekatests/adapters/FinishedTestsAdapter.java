@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -29,13 +31,31 @@ public class FinishedTestsAdapter extends RecyclerView.Adapter<FinishedTestsAdap
     @Override
     public FinishedTestsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.finished_test, parent, false);
+
         return new FinishedTestsAdapter.ViewHolder(view);
     }
+
 
     @Override
     public void onBindViewHolder(@NonNull FinishedTestsAdapter.ViewHolder holder, int position) {
         Test test = tests.get(position);
         holder.testTitle.setText(test.getTitle());
+        View view = holder.itemView;
+        int picture;
+        switch (test.getTitle()) {
+            case "Но-Шпа" :
+                picture = R.drawable.noshpa;
+                break;
+            case "Мезим" :
+                picture = R.drawable.mezim;
+                break;
+            case "Арбидол" :
+                picture = R.drawable.arbidol;
+                break;
+            default: picture = R.drawable.arbidol;
+        }
+        ((ImageView) view.findViewById(R.id.character_post_image)).setImageResource(picture);
+
         holder.itemView.setOnClickListener(v -> {
             onFinishedTestListener.onFinishedTestClick(holder.itemView, position);
         });
