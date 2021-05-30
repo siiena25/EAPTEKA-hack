@@ -25,6 +25,8 @@ import com.eapteka.eaptekatests.database.Logger;
 
 import org.jetbrains.annotations.NotNull;
 
+import org.jetbrains.annotations.NotNull;
+
 import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
 import uk.co.samuelwall.materialtaptargetprompt.extras.backgrounds.CirclePromptBackground;
 import uk.co.samuelwall.materialtaptargetprompt.extras.focals.RectanglePromptFocal;
@@ -38,10 +40,19 @@ public class AccountFragment extends BaseFragment {
 
     Logger logger = new Logger("AccountFragment", true);
 
+    boolean isFirstEnterInProfileFragment = true;
+
     @Override
     public void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         viewModel = new ViewModelProvider(getActivity()).get(AccountVM.class);
+
+        if (savedInstanceState != null) {
+            isFirstEnterInProfileFragment = savedInstanceState.getBoolean("isFirstEnterInProfileFragment", false);
+        }
+        else {
+            isFirstEnterInProfileFragment = true;
+        }
     }
 
     @Override
@@ -84,8 +95,6 @@ public class AccountFragment extends BaseFragment {
                 scoreView.setText(accountData.coins + " балла");
         });
 
-        callButtonTestsTapTargetPrompt();
-
         navController = NavHostFragment.findNavController(this);
 
         AppCompatButton buttonTests = view.findViewById(R.id.button_tests);
@@ -98,7 +107,11 @@ public class AccountFragment extends BaseFragment {
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        callButtonTestsTapTargetPrompt();
+
+        if (isFirstEnterInProfileFragment) {
+            callButtonTestsTapTargetPrompt();
+            isFirstEnterInProfileFragment = false;
+        }
     }
 
     private void callButtonTestsTapTargetPrompt() {
@@ -115,7 +128,7 @@ public class AccountFragment extends BaseFragment {
                 .setPromptStateChangeListener(new MaterialTapTargetPrompt.PromptStateChangeListener() {
                     @Override
                     public void onPromptStateChanged(@NonNull MaterialTapTargetPrompt prompt, int state) {
-                        if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED) {
+                        if (state == MaterialTapTargetPrompt.STATE_NON_FOCAL_PRESSED) {
                             callScoreViewTapTargetPrompt();
                         }
                     }
@@ -135,7 +148,8 @@ public class AccountFragment extends BaseFragment {
                 .setPromptStateChangeListener(new MaterialTapTargetPrompt.PromptStateChangeListener() {
                     @Override
                     public void onPromptStateChanged(@NonNull MaterialTapTargetPrompt prompt, int state) {
-                        if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED) {
+                        if ((state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED) ||
+                                (state == MaterialTapTargetPrompt.STATE_NON_FOCAL_PRESSED)) {
                             callMoodTapTargetPrompt();
                         }
                     }
@@ -153,5 +167,11 @@ public class AccountFragment extends BaseFragment {
                 .setPromptFocal(new RectanglePromptFocal().setCornerRadius(150, 150))
                 .setBackgroundColour(getResources().getColor(R.color.transparent_end_color))
                 .show();
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull @NotNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean("isFirstEnterInProfileFragment", false);
     }
 }
