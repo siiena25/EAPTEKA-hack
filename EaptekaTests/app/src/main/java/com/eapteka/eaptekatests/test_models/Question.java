@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Question {
 
-    @SerializedName("Questions")
+    @SerializedName("title")
     public String title; //"Срок годности"
 
     @SerializedName("description")
