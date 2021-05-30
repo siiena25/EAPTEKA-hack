@@ -71,7 +71,7 @@ public class ListAvaibleTestFragment extends BaseFragment implements
                 else if (accountData.coins % 10 != 0 && accountData.coins % 10 > 5)
                     scoreView.setText(accountData.coins + " баллов");
                 else
-                    scoreView.setText(accountData.coins + " балла");
+                    scoreView.setText(accountData.coins + " баллов");
         });
 
 
