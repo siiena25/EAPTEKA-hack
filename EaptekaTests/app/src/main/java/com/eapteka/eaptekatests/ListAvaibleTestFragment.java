@@ -11,7 +11,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.eapteka.eaptekatests.adapters.Holder;
+import com.eapteka.eaptekatests.adapters.FinishedTestsAdapter;
 import com.eapteka.eaptekatests.adapters.StartedTestsAdapter;
 import com.eapteka.eaptekatests.test.TestRepository;
 import com.eapteka.eaptekatests.test_models.Test;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class ListAvaibleTestFragment extends BaseFragment implements
         StartedTestsAdapter.OnStartedTestListener,
-        Holder.OnFinishedTestListener {
+        FinishedTestsAdapter.OnFinishedTestListener {
     private View bReturn;
 
     private final ArrayList<Test> listStartedTests = new ArrayList<>();
@@ -51,7 +51,7 @@ public class ListAvaibleTestFragment extends BaseFragment implements
 
             RecyclerView finishedTestsList = view.findViewById(R.id.finished_tests_list);
             finishedTestsList.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-            Holder finishedTestsAdapter = new Holder(getActivity(), this, listFinishedTest);
+            FinishedTestsAdapter finishedTestsAdapter = new FinishedTestsAdapter(getActivity(), this, listFinishedTest);
             finishedTestsList.setAdapter(finishedTestsAdapter);
         });
         repository.updateAllTests("Alexey");
