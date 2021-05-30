@@ -68,6 +68,7 @@ public class QuestionSelectStorageType extends TestBaseFragment {
                 }
             });
 
+
             viewModel.isSelectedCurrent.observe(getViewLifecycleOwner(), isSelectedCurrent -> {
                 animate(viewModel.question.getValue().correctVariant, isSelectedCurrent, choosed);
             });
@@ -90,7 +91,11 @@ public class QuestionSelectStorageType extends TestBaseFragment {
 
     }
 
+    private Boolean isGet = false;
     private void animate(String correctVariant, Boolean isSelectedCurrent, boolean[] choosed) {
+        if(isGet) return;
+        isGet = true;
+
         int durationTime = 1000;
         float scaleUp = 1.1f;
         float scaleDown = 0.6f;
