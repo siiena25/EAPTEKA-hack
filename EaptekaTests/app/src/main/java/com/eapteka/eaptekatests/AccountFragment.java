@@ -170,6 +170,27 @@ public class AccountFragment extends BaseFragment {
                 .setPromptBackground(new CirclePromptBackground())
                 .setPromptFocal(new RectanglePromptFocal().setCornerRadius(150, 150))
                 .setBackgroundColour(getResources().getColor(R.color.transparent_end_color))
+                .setPromptStateChangeListener(new MaterialTapTargetPrompt.PromptStateChangeListener() {
+                    @Override
+                    public void onPromptStateChanged(@NonNull MaterialTapTargetPrompt prompt, int state) {
+                        if ((state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED) ||
+                                (state == MaterialTapTargetPrompt.STATE_NON_FOCAL_PRESSED)) {
+                            callAchieveTapTargetPrompt();
+                        }
+                    }
+                })
+                .show();
+    }
+
+    private void callAchieveTapTargetPrompt() {
+        new MaterialTapTargetPrompt.Builder(getActivity())
+                .setTarget(R.id.button_achievement)
+                .setPrimaryText("Достижения")
+                .setSecondaryText("Вы также можете получать награды за Ваши успехи в тестах.")
+                .setAnimationInterpolator(new FastOutSlowInInterpolator())
+                .setPromptBackground(new CirclePromptBackground())
+                .setPromptFocal(new RectanglePromptFocal().setCornerRadius(150, 150))
+                .setBackgroundColour(getResources().getColor(R.color.transparent_end_color))
                 .show();
     }
 }
