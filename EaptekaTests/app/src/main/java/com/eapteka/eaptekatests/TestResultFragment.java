@@ -90,6 +90,8 @@ public class TestResultFragment extends Fragment {
         for (int i = 0; i < arrAnswerCurrentOrMistake.length; i++) {
             if (arrAnswerCurrentOrMistake[i])
                 delta += 0.05;
+            else
+                delta -= 0.05;
         }
         viewModel.updateHappyLevel(delta);
         viewModel.updateСoins(rightAnswersCount);
