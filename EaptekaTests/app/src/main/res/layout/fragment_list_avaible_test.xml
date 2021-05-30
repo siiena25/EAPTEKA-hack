@@ -10,7 +10,7 @@
     <LinearLayout
         android:id="@+id/tests_top_menu"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent"
         android:padding="18dp">
@@ -36,9 +36,9 @@
             android:drawablePadding="4dp"
             android:gravity="center"
             android:paddingLeft="10dp"
-            android:paddingTop="2dp"
+            android:paddingTop="5dp"
             android:paddingRight="10dp"
-            android:paddingBottom="2dp"
+            android:paddingBottom="5dp"
             android:text="@string/score"
             android:textColor="@color/white"
             app:drawableStartCompat="@drawable/ic_plus" />

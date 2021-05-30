@@ -14,12 +14,12 @@ import com.eapteka.eaptekatests.test_models.Test;
 
 import java.util.ArrayList;
 
-public class FinishedTestsAdapter extends RecyclerView.Adapter<FinishedTestsAdapter.ViewHolder> {
+public class Holder extends RecyclerView.Adapter<Holder.ViewHolder> {
     private final LayoutInflater inflater;
     private final ArrayList<Test> tests;
     private final OnFinishedTestListener onFinishedTestListener;
 
-    public FinishedTestsAdapter(Context context, OnFinishedTestListener onFinishedTestListener, ArrayList<Test> tests) {
+    public Holder(Context context, OnFinishedTestListener onFinishedTestListener, ArrayList<Test> tests) {
         this.inflater = LayoutInflater.from(context);
         this.tests = tests;
         this.onFinishedTestListener = onFinishedTestListener;
@@ -27,13 +27,13 @@ public class FinishedTestsAdapter extends RecyclerView.Adapter<FinishedTestsAdap
 
     @NonNull
     @Override
-    public FinishedTestsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public Holder.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.finished_test, parent, false);
-        return new FinishedTestsAdapter.ViewHolder(view);
+        return new Holder.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FinishedTestsAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull Holder.ViewHolder holder, int position) {
         Test test = tests.get(position);
         holder.testTitle.setText(test.getTitle());
         holder.itemView.setOnClickListener(v -> {
