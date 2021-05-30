@@ -15,6 +15,7 @@ import com.eapteka.eaptekatests.custom_view.CustomGradientTextView;
 import com.eapteka.eaptekatests.custom_view.CustomViewCrossOut;
 import com.eapteka.eaptekatests.test.view_models.QuestionShelfTimeVM;
 import com.eapteka.eaptekatests.test.TestBaseFragment;
+import com.eapteka.eaptekatests.test_models.Question;
 
 public class QuestionSelectShelfTimeFragment extends TestBaseFragment {
     private QuestionShelfTimeVM viewModelLocal;
@@ -61,7 +62,9 @@ public class QuestionSelectShelfTimeFragment extends TestBaseFragment {
         viewModelLocal.isSelectedCurrent.observe(getViewLifecycleOwner(), isSelectedCurrent -> {
             if (!isSelectedCurrent) {
                 tvSelectedTime.startAnim();
-                tvApply.setText("Правильный ответ: " + viewModel.question.getValue().correctVariant);
+                Question question = viewModel.question.getValue();
+                String correctVariant = question.variants.get(Integer.parseInt(question.correctVariant));
+                tvApply.setText("Правильный ответ: " + correctVariant);
             } else {
                 tvSelectedTime.animate()
                         .scaleX(1.1f)

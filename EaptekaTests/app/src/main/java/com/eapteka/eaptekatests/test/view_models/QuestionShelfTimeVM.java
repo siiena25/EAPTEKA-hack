@@ -22,6 +22,6 @@ public class QuestionShelfTimeVM extends ViewModel {
 
 
     public void apply(Question question) {
-        isSelectedCurrent.setValue(selectedTime.getValue() == Integer.parseInt(question.correctVariant));
+        isSelectedCurrent.setValue(selectedTime.getValue() == Integer.parseInt(question.variants.get(Integer.parseInt(question.correctVariant))));
     }
 }

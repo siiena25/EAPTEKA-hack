@@ -43,7 +43,7 @@ public class AccountFragment extends BaseFragment {
     boolean isFirstEnterInProfileFragment = true;
 
     private SharedPreferences sharedPreferences;
-
+  
     @Override
     public void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +57,8 @@ public class AccountFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_account, container, false);
+
+        logger.log("onCreateView");
 
         moodView = view.findViewById(R.id.mood_view);
         scoreView = view.findViewById(R.id.score_view);
@@ -106,13 +108,15 @@ public class AccountFragment extends BaseFragment {
 
         if (isFirstEnterInProfileFragment) {
             callButtonTestsTapTargetPrompt();
+            isFirstEnterInProfileFragment = false;
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putBoolean("isFirstEnterInProfileFragment", false);
+            editor.putBoolean("isFirstEnterInProfileFragment", isFirstEnterInProfileFragment);
             editor.apply();
         }
     }
 
     private void callButtonTestsTapTargetPrompt() {
+        logger.log("callButtonTestsTapTargetPrompt");
         new MaterialTapTargetPrompt.Builder(getActivity())
                 .setTarget(R.id.button_tests)
                 .setPrimaryText("Тесты от ЕАПТЕКИ")
@@ -164,11 +168,5 @@ public class AccountFragment extends BaseFragment {
                 .setPromptFocal(new RectanglePromptFocal().setCornerRadius(150, 150))
                 .setBackgroundColour(getResources().getColor(R.color.transparent_end_color))
                 .show();
-    }
-
-    @Override
-    public void onSaveInstanceState(@NonNull @NotNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putBoolean("isFirstEnterInProfileFragment", false);
     }
 }

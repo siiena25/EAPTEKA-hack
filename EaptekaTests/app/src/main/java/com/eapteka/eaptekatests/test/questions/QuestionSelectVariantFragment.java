@@ -52,13 +52,9 @@ public class QuestionSelectVariantFragment extends TestBaseFragment {
                         .inflate(R.layout.item_question_variant, gridLayout, false);
                 variantView.setText(variant);
 
-               /* Boolean isCurrentAnswer = variant.equals(question.correctVariant);*/
                 int viewPos = question.variants.indexOf(variant);
-                /*if (isCurrentAnswer)
-                    currentViewPos = viewPos;*/
 
                 variantView.setOnClickListener(v -> {
-                    //animate(currentViewPos, isCurrentAnswer, viewPos);
                     int durationTime = 1000;
                     float scaleUp = 1.1f;
                     if (choosed[viewPos]){
@@ -97,7 +93,7 @@ public class QuestionSelectVariantFragment extends TestBaseFragment {
         float scaleDown = 0.6f;
         float alphaDown = 0.1f;
 
-        String[] correctVariants = correctVariant.split(" ");
+        String[] correctVariants = correctVariant.split(",");
         ArrayList<String> corrects = new ArrayList<>();
         for (int i = 0; i < correctVariants.length; i++) {
             corrects.add(correctVariants[i]);
