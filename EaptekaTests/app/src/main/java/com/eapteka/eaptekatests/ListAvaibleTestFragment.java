@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
@@ -25,13 +27,17 @@ public class ListAvaibleTestFragment extends BaseFragment implements
         StartedTestsAdapter.OnStartedTestListener,
         FinishedTestsAdapter.OnFinishedTestListener {
     private View bReturn;
+    private TextView scoreView;
 
     private final ArrayList<Test> listStartedTests = new ArrayList<>();
     private final ArrayList<Test> listFinishedTest = new ArrayList<>();
 
+    private AccountVM viewModel;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        viewModel = viewModel = new ViewModelProvider(getActivity()).get(AccountVM.class);
     }
 
     @Override
@@ -58,6 +64,17 @@ public class ListAvaibleTestFragment extends BaseFragment implements
             finishedTestsList.setAdapter(finishedTestsAdapter);
         });
         repository.updateAllTests("Alexey");
+
+        scoreView = view.findViewById(R.id.score_view);
+        viewModel.accountData.observe(getViewLifecycleOwner(), accountData -> {
+            if (Integer.parseInt(scoreView.getText().toString().split(" ")[0]) < accountData.coins)
+                if (accountData.coins % 10 == 1)
+                    scoreView.setText(accountData.coins + " балл");
+                else if (accountData.coins % 10 != 0 && accountData.coins % 10 > 5)
+                    scoreView.setText(accountData.coins + " баллов");
+                else
+                    scoreView.setText(accountData.coins + " балла");
+        });
 
 
         bReturn = view.findViewById(R.id.return_to_profile);
